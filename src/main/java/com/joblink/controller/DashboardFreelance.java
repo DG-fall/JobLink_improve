@@ -101,7 +101,7 @@ public class DashboardFreelance {
     }
     
     @FXML
-    private void showHome() {
+    public void showHome() {
         setActiveButton(btnHome);
         loadView("freelance_home.fxml");
     }
@@ -131,6 +131,15 @@ public class DashboardFreelance {
         try {
             FXMLLoader loader = new FXMLLoader(JobLinkApp.class.getResource("/fxml/" + fxmlFile));
             Node view = loader.load();
+            
+            // Pass parent controller reference to FreelanceHomeController
+            if (fxmlFile.equals("freelance_home.fxml")) {
+                Object controller = loader.getController();
+                if (controller instanceof FreelanceHomeController) {
+                    ((FreelanceHomeController) controller).setParentController(this);
+                }
+            }
+            
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,37 +148,37 @@ public class DashboardFreelance {
     }
 
     @FXML
-    private void showMarketplace() {
+    public void showMarketplace() {
         setActiveButton(btnMarketplace);
         loadView("freelance_marketplace.fxml");
     }
 
     @FXML
-    private void showPropositions() {
+    public void showPropositions() {
         setActiveButton(btnPropositions);
         loadView("freelance_propositions.fxml");
     }
 
     @FXML
-    private void showPortfolio() {
+    public void showPortfolio() {
         setActiveButton(btnPortfolio);
         loadView("freelance_portfolio.fxml");
     }
 
     @FXML
-    private void showRevenus() {
+    public void showRevenus() {
         setActiveButton(btnRevenus);
         loadView("freelance_revenus.fxml");
     }
 
     @FXML
-    private void showMessages() {
+    public void showMessages() {
         setActiveButton(btnMessages);
         loadView("messaging.fxml");
     }
 
     @FXML
-    private void showProfile() {
+    public void showProfile() {
         setActiveButton(btnProfileFreelance);
         loadView("freelance_profile.fxml");
     }

@@ -125,6 +125,15 @@ public class DashboardClient {
         try {
             FXMLLoader loader = new FXMLLoader(JobLinkApp.class.getResource("/fxml/" + fxmlFile));
             Node view = loader.load();
+            
+            // Pass parent controller reference to ClientHomeController
+            if (fxmlFile.equals("client_home.fxml")) {
+                Object controller = loader.getController();
+                if (controller instanceof ClientHomeController) {
+                    ((ClientHomeController) controller).setParentController(this);
+                }
+            }
+            
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,45 +142,52 @@ public class DashboardClient {
     }
 
     @FXML
-    private void showHome() {
+    public void showHome() {
         setActiveButton(btnHome);
         loadView("client_home.fxml");
     }
 
     @FXML
-    private void showMissions() {
+    public void showMissions() {
         setActiveButton(btnMissions);
         loadView("client_missions.fxml");
     }
 
     @FXML
-    private void showCreateMission() {
+    public void showCreateMission() {
         setActiveButton(btnCreateMission);
         loadView("client_create_mission.fxml");
     }
 
     @FXML
-    private void showPropositions() {
+    public void showPropositions() {
         setActiveButton(btnPropositions);
         loadView("client_propositions.fxml");
     }
 
     @FXML
-    private void showFactures() {
+    public void showFactures() {
         setActiveButton(btnFactures);
         loadView("client_factures.fxml");
     }
 
     @FXML
-    private void showMessages() {
+    public void showMessages() {
         setActiveButton(btnMessages);
         loadView("messaging.fxml");
     }
 
     @FXML
-    private void showProfile() {
+    public void showProfile() {
         setActiveButton(btnProfile);
         loadView("client_profile.fxml");
+    }
+    
+    @FXML
+    public void showMarketplace() {
+        // Client doesn't have marketplace, redirect to home or show message
+        setActiveButton(btnHome);
+        loadView("client_home.fxml");
     }
 
     @FXML

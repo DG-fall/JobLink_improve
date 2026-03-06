@@ -43,6 +43,11 @@ public class FreelanceHomeController {
     private MissionDAO missionDAO;
     private PropositionDAO propositionDAO;
     private FactureDAO factureDAO;
+    private DashboardFreelance parentController;
+    
+    public void setParentController(DashboardFreelance parent) {
+        this.parentController = parent;
+    }
 
     @FXML
     public void initialize() {
@@ -191,21 +196,29 @@ public class FreelanceHomeController {
 
     @FXML
     private void goToMarketplace() {
-        // Will be handled by parent controller navigation
+        if (parentController != null) {
+            parentController.showMarketplace();
+        }
     }
 
     @FXML
     private void goToPropositions() {
-        // Will be handled by parent controller navigation
+        if (parentController != null) {
+            parentController.showPropositions();
+        }
     }
 
     @FXML
     private void goToPortfolio() {
-        // Will be handled by parent controller navigation
+        if (parentController != null) {
+            parentController.showPortfolio();
+        }
     }
 
     @FXML
     private void goToRevenus() {
-        // Will be handled by parent controller navigation
+        if (parentController != null) {
+            parentController.showRevenus();
+        }
     }
 }
