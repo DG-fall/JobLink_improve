@@ -32,6 +32,8 @@ public class DashboardFreelance {
     private StackPane contentArea;
 
     @FXML
+    private Button btnHome;
+    @FXML
     private Button btnMarketplace;
     @FXML
     private Button btnPropositions;
@@ -65,30 +67,43 @@ public class DashboardFreelance {
         if (LoginController.currentUser != null) {
             userNameLabel.setText(LoginController.currentUser.getPrenom() + " " + LoginController.currentUser.getNom());
         }
-        allNavButtons = Arrays.asList(btnMarketplace, btnPropositions, btnPortfolio, btnRevenus, btnMessages,
+        allNavButtons = Arrays.asList(btnHome, btnMarketplace, btnPropositions, btnPortfolio, btnRevenus, btnMessages,
                 btnProfileFreelance);
 
         // Icons are now set in FXML to prevent disorder and loading issues
 
         updateNotificationBadge();
-        showMarketplace();
+        showHome();
     }
 
     @FXML
     private void toggleSidebar() {
         sidebarCollapsed = !sidebarCollapsed;
         if (sidebarCollapsed) {
-            sidebar.setPrefWidth(60);
+            sidebar.setPrefWidth(70);
+            sidebar.setMinWidth(70);
             allNavButtons.forEach(b -> b.setText(""));
         } else {
-            sidebar.setPrefWidth(250);
-            btnMarketplace.setText("Marketplace");
-            btnPropositions.setText("Mes Propositions");
-            btnPortfolio.setText("Mon Portfolio");
-            btnRevenus.setText("Mes Revenus");
-            btnMessages.setText("Messages");
-            btnProfileFreelance.setText("Profil & Évaluations");
+            sidebar.setPrefWidth(260);
+            sidebar.setMinWidth(260);
+            restoreSidebarLabels();
         }
+    }
+    
+    private void restoreSidebarLabels() {
+        if (btnHome != null) btnHome.setText("Tableau de bord");
+        if (btnMarketplace != null) btnMarketplace.setText("Marketplace");
+        if (btnPropositions != null) btnPropositions.setText("Mes Propositions");
+        if (btnPortfolio != null) btnPortfolio.setText("Mon Portfolio");
+        if (btnRevenus != null) btnRevenus.setText("Mes Revenus");
+        if (btnMessages != null) btnMessages.setText("Messages");
+        if (btnProfileFreelance != null) btnProfileFreelance.setText("Mon Profil");
+    }
+    
+    @FXML
+    private void showHome() {
+        setActiveButton(btnHome);
+        loadView("freelance_home.fxml");
     }
 
     private void updateNotificationBadge() {

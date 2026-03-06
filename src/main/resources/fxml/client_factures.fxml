@@ -4,12 +4,14 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.joblink.controller.ClientFacturesController" 
-      spacing="20"
-      style="-fx-background-color: transparent;">
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.joblink.controller.ClientFacturesController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background-color: transparent; -fx-background: transparent;">
+            
+<VBox spacing="20" style="-fx-background-color: transparent;">
     <padding>
-        <Insets top="8" right="8" bottom="8" left="8" />
+        <Insets top="8" right="8" bottom="24" left="8" />
     </padding>
     
     <!-- Header -->
@@ -20,8 +22,8 @@
             <Label text="Historique de vos paiements et factures" styleClass="subtitle" />
         </VBox>
         <VBox alignment="CENTER_RIGHT" spacing="2">
-            <Label text="Total Facture" styleClass="caption" />
-            <Label fx:id="totalLabel" text="0 EUR" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: -fx-color-primary;" />
+            <Label text="Total depense" styleClass="caption" />
+            <Label fx:id="totalLabel" text="0 EUR" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: -fx-color-success;" />
         </VBox>
     </HBox>
     
@@ -93,3 +95,4 @@
         </TableView>
     </VBox>
 </VBox>
+</ScrollPane>

@@ -12,7 +12,10 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +34,17 @@ public class ClientFacturesController {
     @FXML
     private TableColumn<Facture, String> colDate;
     @FXML
+    private TableColumn<Facture, String> colStatut;
+    @FXML
+    private TableColumn<Facture, Void> colActions;
+    @FXML
     private Label totalLabel;
+    @FXML
+    private Label lblPaidCount;
+    @FXML
+    private Label lblPendingCount;
+    @FXML
+    private Label lblTotalCount;
 
     private FactureDAO factureDAO;
     private MissionDAO missionDAO;
@@ -62,6 +75,64 @@ public class ClientFacturesController {
             }
             return new SimpleStringProperty("");
         });
+        
+        // Statut column with badge styling
+        colStatut.setCellValueFactory(c -> new SimpleStringProperty("Payee"));
+        colStatut.setCellFactory(col -> new TableCell<Facture, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    Label badge = new Label(item);
+                    badge.getStyleClass().addAll("badge", "badge-success-soft");
+                    badge.setStyle("-fx-padding: 4 12; -fx-background-radius: 20;");
+                    setGraphic(badge);
+                    setText(null);
+                }
+            }
+        });
+        
+        // Actions column with download button
+        colActions.setCellFactory(col -> new TableCell<Facture, Void>() {
+            private final Button downloadBtn = new Button();
+            {
+                FontIcon icon = new FontIcon("fth-download");
+                icon.setIconSize(16);
+                icon.setStyle("-fx-icon-color: #4F46E5;");
+                downloadBtn.setGraphic(icon);
+                downloadBtn.getStyleClass().addAll("button", "ghost");
+                downloadBtn.setStyle("-fx-padding: 6 12;");
+                downloadBtn.setTooltip(new Tooltip("Telecharger PDF"));
+                downloadBtn.setOnAction(e -> {
+                    Facture f = getTableView().getItems().get(getIndex());
+                    downloadFacture(f);
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox box = new HBox(downloadBtn);
+                    box.setAlignment(Pos.CENTER);
+                    setGraphic(box);
+                }
+            }
+        });
+    }
+    
+    private void downloadFacture(Facture facture) {
+        // TODO: Implement PDF export using PDFExportService
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Export PDF");
+        alert.setHeaderText("Facture FAC-" + String.format("%04d", facture.getIdFacture()));
+        alert.setContentText("La fonctionnalite d'export PDF sera bientot disponible.");
+        alert.showAndWait();
     }
 
     private void loadData() {
@@ -69,9 +140,17 @@ public class ClientFacturesController {
             int clientId = LoginController.currentUser.getIdUtilisateur();
             List<Facture> factures = factureDAO.getFacturesByClient(clientId);
             double total = factures.stream().mapToDouble(Facture::getMontantTotal).sum();
+            int totalCount = factures.size();
+            // For now, all factures are considered "paid"
+            int paidCount = totalCount;
+            int pendingCount = 0;
+            
             Platform.runLater(() -> {
                 facturesTable.setItems(FXCollections.observableArrayList(factures));
-                totalLabel.setText("Total dépensé : " + String.format("%.2f €", total));
+                totalLabel.setText("Total depense : " + String.format("%.2f €", total));
+                if (lblTotalCount != null) lblTotalCount.setText(String.valueOf(totalCount));
+                if (lblPaidCount != null) lblPaidCount.setText(String.valueOf(paidCount));
+                if (lblPendingCount != null) lblPendingCount.setText(String.valueOf(pendingCount));
             });
         }).start();
     }

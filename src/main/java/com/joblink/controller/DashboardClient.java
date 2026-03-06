@@ -80,19 +80,24 @@ public class DashboardClient {
     private void toggleSidebar() {
         sidebarCollapsed = !sidebarCollapsed;
         if (sidebarCollapsed) {
-            sidebar.setPrefWidth(60);
+            sidebar.setPrefWidth(70);
+            sidebar.setMinWidth(70);
             allNavButtons.forEach(b -> b.setText(""));
-            // Hide logo text if possible or just logo
         } else {
-            sidebar.setPrefWidth(250);
-            btnHome.setText("Tableau de bord");
-            btnMissions.setText("Mes Missions");
-            btnCreateMission.setText("Créer une Mission");
-            btnPropositions.setText("Propositions");
-            btnFactures.setText("Mes Factures");
-            btnMessages.setText("Messages");
-            btnProfile.setText("Profil");
+            sidebar.setPrefWidth(260);
+            sidebar.setMinWidth(260);
+            restoreSidebarLabels();
         }
+    }
+    
+    private void restoreSidebarLabels() {
+        if (btnHome != null) btnHome.setText("Tableau de bord");
+        if (btnMissions != null) btnMissions.setText("Mes Missions");
+        if (btnCreateMission != null) btnCreateMission.setText("Nouvelle Mission");
+        if (btnPropositions != null) btnPropositions.setText("Propositions");
+        if (btnFactures != null) btnFactures.setText("Factures");
+        if (btnMessages != null) btnMessages.setText("Messages");
+        if (btnProfile != null) btnProfile.setText("Mon Profil");
     }
 
     private void updateNotificationBadge() {
