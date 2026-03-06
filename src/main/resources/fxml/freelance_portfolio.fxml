@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelancePortfolioController" spacing="20">
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Mon Portfolio" styleClass="title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Ajouter une réalisation" styleClass="button, primary" onAction="#addPortfolioItem">
+            <graphic><FontIcon iconLiteral="fth-plus" style="-fx-icon-color: white;" /></graphic>
+        </Button>
+    </HBox>
+    
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
+        <TilePane fx:id="portfolioGrid" hgap="20" vgap="20" prefColumns="3">
+            <padding><javafx.geometry.Insets top="10" right="10" bottom="10" left="10" /></padding>
+            <!-- Generated in controller -->
+        </TilePane>
+    </ScrollPane>
+</VBox>

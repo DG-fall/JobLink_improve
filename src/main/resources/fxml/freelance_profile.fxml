@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelanceProfileController"
+    fitToWidth="true" style="-fx-background-color: transparent; -fx-padding: 0;">
+<VBox spacing="25">
+    <padding><javafx.geometry.Insets top="5" right="5" bottom="20" left="5" /></padding>
+    <Label text="Mon Profil Freelance" styleClass="title" />
+    
+    <VBox spacing="25" styleClass="modern-card">
+        <padding><javafx.geometry.Insets top="30" right="40" bottom="30" left="40" /></padding>
+        
+        <HBox spacing="30">
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Nom" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
+                <TextField fx:id="nomField" />
+            </VBox>
+            <VBox spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Prénom" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
+                <TextField fx:id="prenomField" />
+            </VBox>
+        </HBox>
+        
+        <VBox spacing="8">
+            <Label text="Adresse Email" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
+            <TextField fx:id="emailField" />
+        </VBox>
+        
+        <VBox spacing="8">
+            <Label text="Nouveau mot de passe (laisser vide pour ne pas changer)" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
+            <PasswordField fx:id="passwordField" promptText="••••••••" />
+        </VBox>
+        
+        <Separator />
+        
+        <VBox spacing="8" maxWidth="300">
+            <Label text="Tarif Journalier Moyen (TJM) en €" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
+            <TextField fx:id="tarifField" />
+        </VBox>
+
+        <VBox spacing="10">
+            <Label text="Mes Compétences" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
+            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" prefHeight="90">
+                <FlowPane fx:id="competencesBox" hgap="10" vgap="10" />
+            </ScrollPane>
+            <HBox spacing="10">
+                <TextField fx:id="newCompetenceField" promptText="Ajouter une compétence..." HBox.hgrow="ALWAYS" />
+                <Button text="Ajouter" onAction="#addCompetence" styleClass="button, secondary" />
+            </HBox>
+        </VBox>
+
+        <Label fx:id="feedbackLabel" visible="false" managed="false" />
+        
+        <HBox alignment="CENTER_RIGHT">
+            <Button text="Enregistrer" styleClass="button, primary" onAction="#saveProfile" />
+        </HBox>
+    </VBox>
+    
+    <!-- Evaluations Section -->
+    <Label text="Évaluations reçues" styleClass="title" style="-fx-font-size: 22px;" />
+    
+    <HBox spacing="20">
+        <VBox styleClass="modern-card-small" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
+            <Label text="Note Moyenne" style="-fx-text-fill: -fx-color-muted-foreground;" />
+            <Label fx:id="lblMoyenne" text="— / 5" style="-fx-font-size: 28px; -fx-font-weight: 900; -fx-text-fill: -fx-color-primary;" />
+        </VBox>
+        <VBox styleClass="modern-card-small" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
+            <Label text="Nombre d'avis" style="-fx-text-fill: -fx-color-muted-foreground;" />
+            <Label fx:id="lblNbAvis" text="0" style="-fx-font-size: 28px; -fx-font-weight: 900; -fx-text-fill: -fx-color-foreground;" />
+        </VBox>
+    </HBox>
+    
+    <VBox fx:id="evaluationsBox" spacing="10">
+        <!-- Evaluations rendered dynamically -->
+    </VBox>
+</VBox>
+</ScrollPane>

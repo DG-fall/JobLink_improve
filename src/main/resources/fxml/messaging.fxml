@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.MessagingController" spacing="0" style="-fx-background-color: -fx-color-background;">
+    <Label text="Messagerie" styleClass="title" style="-fx-padding: 0 0 20 0;" />
+    
+    <HBox VBox.vgrow="ALWAYS" spacing="0" styleClass="modern-card" style="-fx-padding: 0;">
+        <!-- Contact List -->
+        <VBox prefWidth="280" style="-fx-border-color: -fx-color-border; -fx-border-width: 0 1 0 0;">
+            <Label text="Conversations" style="-fx-font-weight: bold; -fx-padding: 20 15; -fx-font-size: 15px;" />
+            <Separator />
+            <ListView fx:id="contactsList" VBox.vgrow="ALWAYS" style="-fx-border-color: transparent; -fx-background-color: transparent;" onMouseClicked="#handleContactSelected" />
+        </VBox>
+        
+        <!-- Chat Panel -->
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10" style="-fx-border-width: 0 0 1 0;">
+                <Label fx:id="contactNameLabel" text="Sélectionnez une conversation" style="-fx-font-weight: bold; -fx-font-size: 16px;" />
+            </HBox>
+            
+            <ScrollPane fx:id="chatScroll" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: -fx-color-muted; -fx-padding: 15;">
+                <VBox fx:id="messagesBox" spacing="12">
+                    <padding><javafx.geometry.Insets top="15" right="15" bottom="15" left="15" /></padding>
+                </VBox>
+            </ScrollPane>
+            
+            <HBox spacing="15" style="-fx-padding: 15; -fx-background-color: -fx-color-card; -fx-border-color: -fx-color-border; -fx-border-width: 1 0 0 0;" alignment="CENTER">
+                <TextField fx:id="messageField" promptText="Écrire un message..." HBox.hgrow="ALWAYS" onAction="#sendMessage" />
+                <Button text="Envoyer ➤" styleClass="button, primary" onAction="#sendMessage" />
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

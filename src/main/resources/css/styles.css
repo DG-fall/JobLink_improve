@@ -1,0 +1,682 @@
+/* =========================================================================
+   JobLink - Tailwind Inspired Design System
+   ========================================================================= */
+
+.root {
+    /* Base Variables (Light Mode equivalent of the provided theme) */
+    -fx-color-card: #ffffff;
+    -fx-color-ring: #8b5cf6;
+    -fx-color-input: #e0e7ff;
+    -fx-color-muted: #f5f3ff;
+    -fx-color-accent: #dbeafe;
+    -fx-color-border: #e0e7ff;
+
+    -fx-color-primary: #8b5cf6;
+    -fx-color-primary-hover: #7c3aed;
+    /* Slightly darker violet for hover */
+    -fx-color-primary-foreground: #ffffff;
+
+    -fx-color-sidebar: #f5f3ff;
+    -fx-color-sidebar-foreground: #312e81;
+    -fx-color-sidebar-primary: #8b5cf6;
+
+    -fx-color-background: #f5f3ff;
+    /* Lighter background for proper contrast with white cards */
+
+    -fx-color-foreground: #312e81;
+    -fx-color-muted-foreground: #7c3aed;
+
+    -fx-color-destructive: #ef4444;
+    -fx-color-destructive-hover: #dc2626;
+    -fx-color-destructive-foreground: #ffffff;
+
+    -fx-color-success: #10b981;
+
+    -fx-radius: 10px;
+    -fx-font-family: 'Roboto', 'Inter', sans-serif;
+
+    -fx-background-color: -fx-color-background;
+    -fx-font-size: 14px;
+}
+
+.dark-theme {
+    -fx-color-card: #1e1e2f;
+    -fx-color-ring: #8b5cf6;
+    -fx-color-input: #2d2d3f;
+    -fx-color-muted: #1e1e2f;
+    -fx-color-accent: #3b3b4f;
+    -fx-color-border: #3b3b4f;
+
+    -fx-color-primary: #8b5cf6;
+    -fx-color-primary-hover: #a78bfa;
+    -fx-color-primary-foreground: #ffffff;
+
+    -fx-color-sidebar: #13131f;
+    -fx-color-sidebar-foreground: #e0e7ff;
+    -fx-color-sidebar-primary: #8b5cf6;
+
+    -fx-color-background: #0f0f1b;
+
+    -fx-color-foreground: #ffffff;
+    -fx-color-muted-foreground: #a78bfa;
+
+    -fx-color-destructive: #ef4444;
+    -fx-color-destructive-hover: #dc2626;
+    -fx-color-destructive-foreground: #ffffff;
+
+    -fx-color-success: #10b981;
+
+    -fx-background-color: -fx-color-background;
+}
+
+/* -------------------------------------------------------------------------
+   Typography
+   ------------------------------------------------------------------------- */
+.label {
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.text-muted {
+    -fx-text-fill: -fx-color-muted-foreground;
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-color-muted-foreground;
+}
+
+/* -------------------------------------------------------------------------
+   Layout Components
+   ------------------------------------------------------------------------- */
+.modern-card {
+    -fx-background-color: -fx-color-card;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-color-border;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 4);
+    -fx-padding: 30px;
+}
+
+.modern-card-interactive:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(139, 92, 246, 0.15), 15, 0, 0, 8);
+    /* subtle violet shadow on hover */
+    -fx-cursor: hand;
+    -fx-border-color: -fx-color-ring;
+}
+
+.modern-card-small {
+    -fx-background-color: -fx-color-card;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-color-border;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+/* -------------------------------------------------------------------------
+   Inputs
+   ------------------------------------------------------------------------- */
+.text-field,
+.password-field,
+.text-area,
+.text-area .content,
+.date-picker,
+.date-picker>.text-field,
+.combo-box,
+.combo-box .list-cell {
+    -fx-background-color: -fx-color-card;
+    -fx-text-fill: -fx-color-foreground;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-color-input;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 10px 14px;
+    -fx-prompt-text-fill: -fx-color-muted-foreground;
+    -fx-font-size: 14px;
+}
+
+.text-area .content {
+    -fx-padding: 0;
+}
+
+.dark-theme .text-area .content {
+    -fx-background-color: -fx-color-card;
+}
+
+.dark-theme .text-area {
+    -fx-background-color: -fx-color-card;
+}
+
+.date-picker .button,
+.date-picker .button:hover {
+    -fx-background-color: transparent;
+}
+
+
+.text-field:focused,
+.password-field:focused,
+.text-area:focused {
+    -fx-border-color: -fx-color-ring;
+    -fx-effect: dropshadow(three-pass-box, rgba(139, 92, 246, 0.25), 8, 0, 0, 0);
+}
+
+.error-text {
+    -fx-text-fill: -fx-color-destructive;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* -------------------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------------------- */
+.button {
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 24px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.button.primary {
+    -fx-background-color: -fx-color-primary;
+    -fx-text-fill: -fx-color-primary-foreground;
+    -fx-effect: dropshadow(three-pass-box, rgba(139, 92, 246, 0.3), 10, 0, 0, 3);
+}
+
+.button.primary:hover {
+    -fx-background-color: -fx-color-primary-hover;
+    -fx-effect: dropshadow(three-pass-box, rgba(139, 92, 246, 0.5), 15, 0, 0, 5);
+}
+
+.button.secondary {
+    -fx-background-color: -fx-color-muted;
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.button.secondary:hover {
+    -fx-background-color: -fx-color-border;
+}
+
+.button.icon-only {
+    -fx-padding: 8px 12px;
+}
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 8px;
+    -fx-background-radius: 50%;
+}
+
+.icon-button:hover {
+    -fx-background-color: -fx-color-muted;
+}
+
+/* -------------------------------------------------------------------------
+   Sidebar & Navigation
+   ------------------------------------------------------------------------- */
+.sidebar {
+    -fx-background-color: -fx-color-sidebar;
+}
+
+.sidebar-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-color-sidebar-foreground;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-color-muted-foreground;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px 15px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-graphic-text-gap: 12px; 
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(139, 92, 246, 0.1);
+    -fx-text-fill: -fx-color-primary;
+}
+
+.nav-button .ikonli-font-icon {
+    -fx-icon-color: -fx-color-muted-foreground;
+    -fx-fill: -fx-color-muted-foreground;
+}
+
+.nav-button:hover .ikonli-font-icon {
+    -fx-icon-color: -fx-color-primary;
+    -fx-fill: -fx-color-primary;
+}
+
+.nav-button.active {
+    -fx-background-color: -fx-color-primary;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(139, 92, 246, 0.4), 10, 0, 0, 4);
+}
+
+.nav-button.active:hover {
+    -fx-background-color: -fx-color-primary-hover;
+}
+
+.nav-button.active .ikonli-font-icon {
+    -fx-icon-color: #ffffff;
+    -fx-fill: #ffffff;
+}
+
+.top-bar {
+    -fx-padding: 15px 40px;
+    -fx-background-color: transparent;
+}
+
+.icon-button .ikonli-font-icon {
+    -fx-icon-color: -fx-color-muted-foreground;
+    -fx-fill: -fx-color-muted-foreground;
+}
+
+.icon-button:hover .ikonli-font-icon {
+    -fx-icon-color: -fx-color-primary;
+    -fx-fill: -fx-color-primary;
+}
+
+/* -------------------------------------------------------------------------
+   Tables (TableView)
+   ------------------------------------------------------------------------- */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-color-border;
+    -fx-border-radius: 10px;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-color-card;
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: -fx-color-border;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 45px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-color-muted-foreground;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: -fx-color-foreground;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10px;
+    -fx-border-color: transparent; 
+}
+
+.table-row-cell {
+    -fx-background-color: -fx-color-card;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: -fx-color-muted;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -fx-color-card; 
+}
+
+.table-row-cell:hover {
+    -fx-background-color: -fx-color-muted;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -fx-color-accent;
+    -fx-table-cell-border-color: transparent;
+}
+
+/* Hide empty table rows */
+.table-view .virtual-flow .clipped-container .sheet .row-indexed:empty {
+    -fx-background-color: transparent;
+}
+.table-view .placeholder .label {
+    -fx-text-fill: -fx-color-muted-foreground;
+}
+
+/* -------------------------------------------------------------------------
+   Dialogs / Alerts
+   ------------------------------------------------------------------------- */
+.dialog-pane {
+    -fx-background-color: -fx-color-card;
+    -fx-border-color: -fx-color-border;
+    -fx-border-width: 1px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: -fx-color-card;
+}
+
+.dialog-pane .label {
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.dialog-pane .content {
+    -fx-text-fill: -fx-color-foreground;
+}
+
+/* Fix Dialog Buttons */
+.dialog-pane .button-bar .button {
+    -fx-background-color: -fx-color-muted;
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: -fx-color-border;
+}
+
+.dialog-pane .button-bar .button.default {
+    -fx-background-color: -fx-color-primary;
+    -fx-text-fill: -fx-color-primary-foreground;
+}
+
+.dialog-pane .button-bar .button.default:hover {
+    -fx-background-color: -fx-color-primary-hover;
+}
+    -fx-text-fill: -fx-color-foreground;
+    -fx-border-color: -fx-color-border;
+    -fx-border-radius: 10px;
+}
+
+.button.secondary:hover {
+    -fx-background-color: -fx-color-accent;
+    -fx-border-color: -fx-color-ring;
+}
+
+.button.destructive {
+    -fx-background-color: -fx-color-destructive;
+    -fx-text-fill: -fx-color-destructive-foreground;
+}
+
+.button.destructive:hover {
+    -fx-background-color: -fx-color-destructive-hover;
+}
+
+.button.icon-only {
+    -fx-background-color: transparent;
+    -fx-padding: 8px;
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}
+
+.button.icon-only:hover {
+    -fx-background-color: -fx-color-muted;
+}
+
+/* -------------------------------------------------------------------------
+   Sidebar Navigation
+   ------------------------------------------------------------------------- */
+.sidebar {
+    -fx-background-color: -fx-color-sidebar;
+    -fx-padding: 24px 16px;
+    -fx-border-color: -fx-color-border;
+    -fx-border-width: 0 1px 0 0;
+}
+
+.sidebar-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-color-sidebar-primary;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-color-sidebar-foreground;
+    -fx-alignment: center-left;
+    -fx-padding: 14px 20px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-font-weight: 600;
+    -fx-font-size: 15px;
+    -fx-graphic-text-gap: 15px;
+}
+
+.nav-button:hover {
+    -fx-background-color: -fx-color-accent;
+}
+
+.nav-button.active {
+    -fx-background-color: -fx-color-sidebar-primary;
+    -fx-text-fill: -fx-color-primary-foreground;
+}
+
+.sidebar-button .ikonli-font-icon,
+.nav-button .ikonli-font-icon {
+    -fx-icon-color: -fx-color-sidebar-foreground;
+    /* Use dynamic foreground */
+}
+
+.sidebar-button:hover .ikonli-font-icon,
+.sidebar-button.active .ikonli-font-icon,
+.nav-button:hover .ikonli-font-icon,
+.nav-button.active .ikonli-font-icon {
+    -fx-icon-color: -fx-color-primary-foreground;
+}
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-color-muted-foreground;
+    -fx-padding: 8px;
+    -fx-cursor: hand;
+    -fx-background-radius: 50%;
+}
+
+.icon-button:hover {
+    -fx-background-color: -fx-color-accent;
+    -fx-text-fill: -fx-color-primary;
+}
+
+.icon-button .ikonli-font-icon {
+    -fx-icon-color: -fx-color-muted-foreground;
+}
+
+.icon-button:hover .ikonli-font-icon {
+    -fx-icon-color: -fx-color-primary;
+}
+
+/* -------------------------------------------------------------------------
+   ScrollBars
+   ------------------------------------------------------------------------- */
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: -fx-color-border;
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar:vertical .thumb:hover,
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: -fx-color-primary;
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Fix ScrollPane in Dark Mode */
+.scroll-pane,
+.scroll-pane>.viewport {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+/* ListView, TableView, TreeView */
+.list-view,
+.table-view,
+.tree-view {
+    -fx-background-color: -fx-color-card;
+    -fx-background-radius: 10px;
+    -fx-border-color: -fx-color-border;
+    -fx-border-radius: 10px;
+}
+
+.list-view .placeholder .label,
+.table-view .placeholder .label {
+    -fx-text-fill: -fx-color-muted-foreground;
+}
+
+/* Dialogs and Popups */
+.dialog-pane {
+    -fx-background-color: -fx-color-background;
+}
+
+.dark-theme .dialog-pane {
+    -fx-background-color: -fx-color-card;
+}
+
+.dark-theme .dialog-pane>.content.label {
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.dark-theme .dialog-pane .button-bar .button {
+    -fx-background-color: -fx-color-muted;
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.dark-theme .dialog-pane .header-panel {
+    -fx-background-color: -fx-color-muted;
+}
+
+.dark-theme .dialog-pane .header-panel .label {
+    -fx-text-fill: -fx-color-primary;
+    -fx-font-weight: bold;
+}
+
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: -fx-color-accent;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: -fx-color-primary;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: -fx-color-muted;
+    -fx-border-color: -fx-color-border;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-color-sidebar-foreground;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-color-foreground;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* -------------------------------------------------------------------------
+   Badges & Status
+   ------------------------------------------------------------------------- */
+.badge {
+    -fx-background-color: -fx-color-primary;
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 4px 12px;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+}
+
+.badge-success {
+    -fx-background-color: #10b981;
+    -fx-text-fill: white;
+}
+
+.badge-warning {
+    -fx-background-color: #f59e0b;
+    -fx-text-fill: white;
+}
+
+.badge-info {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+}
+
+.badge-danger {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+}
+
+/* -------------------------------------------------------------------------
+   Ikonli / Icons Fix Utility
+   ------------------------------------------------------------------------- */
+.ikonli-font-icon {
+    -fx-icon-color: -fx-color-primary;
+}
+
+.dark-theme .ikonli-font-icon {
+    -fx-icon-color: -fx-color-muted-foreground;
+}
+
+.nav-button.active .ikonli-font-icon {
+    -fx-icon-color: white;
+}
+
+
+/* -------------------------------------------------------------------------
+   Top Bar
+   ------------------------------------------------------------------------- */
+.top-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 20px 40px;
+    -fx-border-color: -fx-color-border;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* -------------------------------------------------------------------------
+   Radio Buttons
+   ------------------------------------------------------------------------- */
+.radio-button {
+    -fx-text-fill: -fx-color-foreground;
+    -fx-font-size: 14px;
+}
+
+.radio-button .radio {
+    -fx-border-color: -fx-color-primary;
+    -fx-border-radius: 50%;
+}
+
+.radio-button:selected .dot {
+    -fx-background-color: -fx-color-primary;
+}

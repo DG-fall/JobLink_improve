@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientPropositionsController" spacing="20">
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Propositions reçues" styleClass="title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="missionFilter" promptText="Filtrer par mission..." prefWidth="280" onAction="#handleMissionFilter" />
+    </HBox>
+
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
+        <VBox fx:id="propositionsBox" spacing="15">
+            <padding><javafx.geometry.Insets top="5" right="5" bottom="5" left="5" /></padding>
+        </VBox>
+    </ScrollPane>
+</VBox>

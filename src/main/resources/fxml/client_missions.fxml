@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientMissionsController" spacing="20">
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="Mes Missions" styleClass="title" />
+        <Region HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="statusFilter" promptText="Tous les statuts" prefWidth="180" onAction="#handleFilter" />
+        <FontIcon iconLiteral="fth-search" iconSize="16" styleClass="text-muted" />
+        <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="220" onKeyReleased="#handleFilter" />
+    </HBox>
+
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
+        <VBox fx:id="missionsBox" spacing="15">
+            <padding><javafx.geometry.Insets top="10" right="10" bottom="10" left="10" /></padding>
+        </VBox>
+    </ScrollPane>
+</VBox>

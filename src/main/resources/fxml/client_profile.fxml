@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientProfileController" spacing="25">
+    
+    <Label text="Mon Profil Entreprise" styleClass="title" />
+    
+    <VBox spacing="30" styleClass="modern-card">
+        <padding><javafx.geometry.Insets top="30" right="40" bottom="30" left="40" /></padding>
+        
+        <HBox spacing="30">
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Nom" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <TextField fx:id="nomField" />
+            </VBox>
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Prénom" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <TextField fx:id="prenomField" />
+            </VBox>
+        </HBox>
+        
+        <HBox spacing="30">
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Nom de l'Entreprise" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <TextField fx:id="entrepriseField" />
+            </VBox>
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Adresse postale" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <TextField fx:id="adresseField" />
+            </VBox>
+        </HBox>
+
+        <VBox spacing="10">
+            <Label text="Adresse Email" styleClass="text-muted" style="-fx-font-weight: bold;" />
+            <TextField fx:id="emailField" />
+        </VBox>
+        
+        <VBox spacing="10">
+            <Label text="Nouveau mot de passe (laisser vide pour ne pas changer)" styleClass="text-muted" style="-fx-font-weight: bold;" />
+            <PasswordField fx:id="passwordField" promptText="••••••••" />
+        </VBox>
+
+        <Label fx:id="feedbackLabel" visible="false" managed="false" />
+        
+        <HBox alignment="CENTER_RIGHT" spacing="15">
+            <Button text="Enregistrer les modifications" styleClass="button, primary" onAction="#saveProfile" />
+        </HBox>
+    </VBox>
+</VBox>

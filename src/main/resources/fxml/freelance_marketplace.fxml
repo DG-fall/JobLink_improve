@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelanceMarketplaceController" spacing="15">
+    <Label text="Marketplace des Missions" styleClass="title" />
+    
+    <!-- Filter Row -->
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="modern-card-small">
+        <FontIcon iconLiteral="fth-search" iconSize="16" styleClass="text-muted" />
+        <TextField fx:id="searchField" promptText="Recherche par mot-clé..." prefWidth="250" onKeyReleased="#applyFilters" />
+        <ComboBox fx:id="competenceFilter" promptText="Compétence..." prefWidth="200" onAction="#applyFilters" />
+        <Label text="Budget Min (€):" style="-fx-text-fill: -fx-color-muted-foreground;" />
+        <TextField fx:id="budgetMinField" promptText="0" prefWidth="80" onKeyReleased="#applyFilters" />
+        <Label text="Max (€):" style="-fx-text-fill: -fx-color-muted-foreground;" />
+        <TextField fx:id="budgetMaxField" promptText="∞" prefWidth="80" onKeyReleased="#applyFilters" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Réinitialiser" styleClass="button, secondary" onAction="#resetFilters" />
+    </HBox>
+    
+    <Label fx:id="resultCountLabel" style="-fx-text-fill: -fx-color-muted-foreground; -fx-font-size: 13px;" />
+    
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;" VBox.vgrow="ALWAYS">
+        <TilePane fx:id="missionsGrid" hgap="20" vgap="20" prefColumns="2">
+            <padding><javafx.geometry.Insets top="5" right="5" bottom="5" left="5" /></padding>
+        </TilePane>
+    </ScrollPane>
+</VBox>

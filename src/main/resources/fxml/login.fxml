@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.LoginController" prefWidth="1000" prefHeight="700">
+    
+    <VBox maxWidth="450" maxHeight="500" alignment="CENTER" spacing="20" styleClass="modern-card">
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40" />
+        </padding>
+        
+        <!-- Logo / Icon -->
+        <FontIcon fx:id="logoIcon" iconLiteral="fth-briefcase" iconSize="48" style="-fx-icon-color: -fx-color-primary;" />
+        
+        <Label text="Bienvenue sur JobLink" styleClass="title" />
+        <Label text="Connectez-vous à votre compte" styleClass="subtitle" />
+        
+        <VBox spacing="15" VBox.vgrow="ALWAYS" alignment="CENTER_LEFT">
+            <padding><Insets top="20" bottom="20" /></padding>
+            
+            <Label text="Adresse Email" styleClass="text-muted" />
+            <TextField fx:id="emailField" promptText="exemple@email.com" />
+            
+            <Label text="Mot de Passe" styleClass="text-muted" />
+            <PasswordField fx:id="passwordField" promptText="••••••••" />
+        </VBox>
+        
+        <Label fx:id="errorLabel" styleClass="error-text" visible="false" managed="false" />
+        
+        <!-- Actions -->
+        <Button fx:id="btnLogin" text="Se connecter" styleClass="button, primary" maxWidth="Infinity" onAction="#handleLogin" />
+        
+        <!-- Switch Mode -->
+        <HBox alignment="CENTER" spacing="5">
+            <Label text="Pas encore de compte ?" styleClass="text-muted" />
+            <Hyperlink text="Créer un compte" onAction="#goToRegister" style="-fx-text-fill: -fx-color-primary; -fx-font-weight: bold; -fx-underline: false; -fx-border-color: transparent;" />
+        </HBox>
+    </VBox>
+</StackPane>

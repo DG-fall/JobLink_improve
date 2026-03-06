@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelanceRevenusController" spacing="25">
+    <Label text="Mes Revenus" styleClass="title" />
+    
+    <!-- Stats Row -->
+    <HBox spacing="20">
+        <VBox styleClass="modern-card" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
+            <Label text="Total des Revenus" style="-fx-text-fill: -fx-color-muted-foreground;" />
+            <Label fx:id="lblTotalRevenus" text="0 €" style="-fx-font-size: 30px; -fx-font-weight: 900; -fx-text-fill: -fx-color-success;" />
+        </VBox>
+        <VBox styleClass="modern-card" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
+            <Label text="Missions Terminées" style="-fx-text-fill: -fx-color-muted-foreground;" />
+            <Label fx:id="lblMissionsTerminees" text="0" style="-fx-font-size: 30px; -fx-font-weight: 900; -fx-text-fill: -fx-color-primary;" />
+        </VBox>
+        <VBox styleClass="modern-card" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
+            <Label text="Note Moyenne" style="-fx-text-fill: -fx-color-muted-foreground;" />
+            <Label fx:id="lblNoteMoyenne" text="— / 5" style="-fx-font-size: 30px; -fx-font-weight: 900; -fx-text-fill: -fx-color-foreground;" />
+        </VBox>
+    </HBox>
+    
+    <Label text="Historique des Factures" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
+    
+    <VBox styleClass="modern-card" VBox.vgrow="ALWAYS">
+        <padding><javafx.geometry.Insets top="15" right="15" bottom="15" left="15" /></padding>
+        <TableView fx:id="facturesTable" VBox.vgrow="ALWAYS" style="-fx-border-color: transparent;">
+            <columns>
+                <TableColumn fx:id="colMission" text="Mission" prefWidth="350" />
+                <TableColumn fx:id="colMontant" text="Montant" prefWidth="120" />
+                <TableColumn fx:id="colDate" text="Date" prefWidth="160" />
+                <TableColumn fx:id="colStatut" text="Statut" prefWidth="100" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</VBox>

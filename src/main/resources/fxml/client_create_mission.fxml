@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientCreateMissionController" spacing="20">
+    <Label text="Créer une nouvelle Mission" styleClass="title" />
+    
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
+        <VBox spacing="25" styleClass="modern-card">
+            <padding><javafx.geometry.Insets top="30" right="40" bottom="30" left="40" /></padding>
+            
+            <VBox spacing="10">
+                <Label text="Titre de la mission" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <TextField fx:id="titreField" promptText="Ex: Développeur Fullstack React/Java" />
+            </VBox>
+            
+            <VBox spacing="10">
+                <Label text="Description détaillée" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <TextArea fx:id="descriptionArea" promptText="Décrivez les objectifs, le contexte, et ce que vous attendez..." prefRowCount="6" wrapText="true" />
+            </VBox>
+            
+            <HBox spacing="25">
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Budget Total (€)" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                    <TextField fx:id="budgetField" promptText="Ex: 2500" />
+                </VBox>
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Date limite" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                    <DatePicker fx:id="dateLimitePicker" promptText="Sélectionnez une date limite" maxWidth="Infinity" styleClass="text-field" />
+                </VBox>
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Date livraison (Optionnel)" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                    <DatePicker fx:id="dateLivraisonPicker" promptText="Sélectionnez une date prévue" maxWidth="Infinity" styleClass="text-field" />
+                </VBox>
+            </HBox>
+            
+            <VBox spacing="10">
+                <Label text="Compétences requises (Sélectionnez plusieurs)" styleClass="text-muted" style="-fx-font-weight: bold;" />
+                <ListView fx:id="competencesListView" prefHeight="150" />
+                <!-- Option to add new competence could be here -->
+                <HBox spacing="10">
+                    <TextField fx:id="newCompetenceField" promptText="Nouvelle compétence..." HBox.hgrow="ALWAYS" />
+                    <Button text="Ajouter à la liste" onAction="#handleAddNewCompetence" styleClass="button, secondary" />
+                </HBox>
+            </VBox>
+            
+            <Label fx:id="feedbackLabel" visible="false" managed="false" style="-fx-font-weight: bold;" />
+            
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <Button text="Annuler" styleClass="button, secondary" onAction="#handleCancel" />
+                <Button text="Publier la mission" styleClass="button, primary" onAction="#handleCreate" />
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</VBox>
