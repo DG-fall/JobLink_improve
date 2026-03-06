@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.joblink.controller.FreelanceHomeController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background-color: transparent; -fx-background: transparent;">
+    
+    <VBox spacing="24" style="-fx-background-color: transparent;">
+        <padding>
+            <Insets top="8" right="8" bottom="24" left="8" />
+        </padding>
+        
+        <!-- Welcome Banner -->
+        <HBox styleClass="welcome-banner" alignment="CENTER_LEFT" spacing="24">
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+                <Label fx:id="welcomeLabel" text="Bienvenue !" 
+                       style="-fx-font-size: 28px; -fx-font-weight: 700; -fx-text-fill: white;" />
+                <Label text="Decouvrez les dernieres missions disponibles et developpez votre activite."
+                       style="-fx-font-size: 15px; -fx-text-fill: rgba(255,255,255,0.85); -fx-wrap-text: true;"
+                       wrapText="true" maxWidth="450" />
+                <Region prefHeight="8" />
+                <Button text="Explorer les missions" styleClass="button"
+                        style="-fx-background-color: white; -fx-text-fill: #4F46E5; -fx-font-weight: 600;"
+                        onAction="#goToMarketplace">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-search" iconSize="16" style="-fx-icon-color: #4F46E5;" />
+                    </graphic>
+                </Button>
+            </VBox>
+            <StackPane prefWidth="140" prefHeight="140" 
+                       style="-fx-background-color: rgba(255,255,255,0.15); -fx-background-radius: 20;">
+                <FontIcon iconLiteral="fth-award" iconSize="60" style="-fx-icon-color: white;" />
+            </StackPane>
+        </HBox>
+        
+        <!-- Stats Cards Row -->
+        <HBox spacing="20">
+            <!-- Total Revenus -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <StackPane style="-fx-background-color: #D1FAE5; -fx-background-radius: 12;"
+                               prefWidth="48" prefHeight="48" alignment="CENTER">
+                        <FontIcon iconLiteral="fth-dollar-sign" iconSize="22" style="-fx-icon-color: #10B981;" />
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Total Revenus" styleClass="stat-label" />
+                        <Label fx:id="lblTotalRevenus" text="0 EUR" styleClass="stat-value" 
+                               style="-fx-font-size: 32px;" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <FontIcon iconLiteral="fth-trending-up" iconSize="14" style="-fx-icon-color: #10B981;" />
+                    <Label fx:id="lblRevenusTrend" text="+15% ce mois" styleClass="stat-trend, stat-trend-up" />
+                </HBox>
+            </VBox>
+            
+            <!-- Propositions Envoyees -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <StackPane style="-fx-background-color: #DBEAFE; -fx-background-radius: 12;"
+                               prefWidth="48" prefHeight="48" alignment="CENTER">
+                        <FontIcon iconLiteral="fth-send" iconSize="22" style="-fx-icon-color: #3B82F6;" />
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Propositions" styleClass="stat-label" />
+                        <Label fx:id="lblPropositions" text="0" styleClass="stat-value" 
+                               style="-fx-font-size: 32px;" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <Label text="envoyees ce mois" style="-fx-text-fill: #64748B; -fx-font-size: 13px;" />
+                </HBox>
+            </VBox>
+            
+            <!-- Missions En Cours -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <StackPane style="-fx-background-color: #FEF3C7; -fx-background-radius: 12;"
+                               prefWidth="48" prefHeight="48" alignment="CENTER">
+                        <FontIcon iconLiteral="fth-clock" iconSize="22" style="-fx-icon-color: #F59E0B;" />
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="En Cours" styleClass="stat-label" />
+                        <Label fx:id="lblMissionsEnCours" text="0" styleClass="stat-value" 
+                               style="-fx-font-size: 32px;" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <Label text="missions actives" style="-fx-text-fill: #64748B; -fx-font-size: 13px;" />
+                </HBox>
+            </VBox>
+            
+            <!-- Note Moyenne -->
+            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="12">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <StackPane style="-fx-background-color: #F3E8FF; -fx-background-radius: 12;"
+                               prefWidth="48" prefHeight="48" alignment="CENTER">
+                        <FontIcon iconLiteral="fth-star" iconSize="22" style="-fx-icon-color: #8B5CF6;" />
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label text="Note Moyenne" styleClass="stat-label" />
+                        <Label fx:id="lblNoteMoyenne" text="0/5" styleClass="stat-value" 
+                               style="-fx-font-size: 32px;" />
+                    </VBox>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <FontIcon iconLiteral="fth-star" iconSize="14" style="-fx-icon-color: #F59E0B;" />
+                    <Label fx:id="lblAvisCount" text="0 avis" style="-fx-text-fill: #64748B; -fx-font-size: 13px;" />
+                </HBox>
+            </VBox>
+        </HBox>
+        
+        <!-- Charts and Missions Row -->
+        <HBox spacing="24">
+            
+            <!-- Revenue Chart -->
+            <VBox styleClass="modern-card" HBox.hgrow="ALWAYS" spacing="16" minWidth="400">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label text="Evolution des revenus" styleClass="title-sm" />
+                        <Label text="Vos gains des derniers mois" styleClass="caption" />
+                    </VBox>
+                </HBox>
+                
+                <LineChart fx:id="revenueChart" prefHeight="280" animated="false"
+                           legendVisible="false" createSymbols="true">
+                    <xAxis>
+                        <CategoryAxis fx:id="xAxis" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="yAxis" side="LEFT" label="EUR" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
+            
+            <!-- Recent Opportunities -->
+            <VBox styleClass="modern-card" prefWidth="400" spacing="16">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Opportunites recentes" styleClass="title-sm" HBox.hgrow="ALWAYS" />
+                    <Button text="Voir tout" styleClass="button, ghost" style="-fx-padding: 6 12;"
+                            onAction="#goToMarketplace">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-arrow-right" iconSize="14" />
+                        </graphic>
+                    </Button>
+                </HBox>
+                
+                <VBox fx:id="recentMissionsBox" spacing="12">
+                    <!-- Dynamic Mission Cards -->
+                </VBox>
+            </VBox>
+        </HBox>
+        
+        <!-- Skills and Quick Actions Row -->
+        <HBox spacing="24">
+            
+            <!-- Skills Progress -->
+            <VBox styleClass="modern-card" HBox.hgrow="ALWAYS" spacing="16">
+                <Label text="Performance par competence" styleClass="title-sm" />
+                
+                <VBox fx:id="skillsProgressBox" spacing="16">
+                    <!-- Skill progress bars will be added here -->
+                </VBox>
+            </VBox>
+            
+            <!-- Quick Actions -->
+            <VBox styleClass="modern-card" prefWidth="350" spacing="16">
+                <Label text="Actions rapides" styleClass="title-sm" />
+                
+                <VBox spacing="10">
+                    <Button text="Explorer le marketplace" styleClass="button, primary" 
+                            maxWidth="Infinity" onAction="#goToMarketplace">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-search" iconSize="18" style="-fx-icon-color: white;" />
+                        </graphic>
+                    </Button>
+                    
+                    <Button text="Mes propositions" styleClass="button, secondary" 
+                            maxWidth="Infinity" onAction="#goToPropositions">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-send" iconSize="18" />
+                        </graphic>
+                    </Button>
+                    
+                    <Button text="Gerer mon portfolio" styleClass="button, secondary" 
+                            maxWidth="Infinity" onAction="#goToPortfolio">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-grid" iconSize="18" />
+                        </graphic>
+                    </Button>
+                    
+                    <Button text="Voir mes revenus" styleClass="button, secondary" 
+                            maxWidth="Infinity" onAction="#goToRevenus">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-trending-up" iconSize="18" />
+                        </graphic>
+                    </Button>
+                </VBox>
+            </VBox>
+        </HBox>
+        
+    </VBox>
+</ScrollPane>

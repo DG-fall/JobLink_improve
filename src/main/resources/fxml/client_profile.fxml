@@ -1,50 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientProfileController" spacing="25">
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.joblink.controller.ClientProfileController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background-color: transparent; -fx-background: transparent;">
     
-    <Label text="Mon Profil Entreprise" styleClass="title" />
-    
-    <VBox spacing="30" styleClass="modern-card">
-        <padding><javafx.geometry.Insets top="30" right="40" bottom="30" left="40" /></padding>
+    <VBox spacing="24" style="-fx-background-color: transparent;">
+        <padding>
+            <Insets top="8" right="8" bottom="24" left="8" />
+        </padding>
         
-        <HBox spacing="30">
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Nom" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <TextField fx:id="nomField" />
-            </VBox>
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Prénom" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <TextField fx:id="prenomField" />
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <FontIcon iconLiteral="fth-user" iconSize="28" style="-fx-icon-color: -fx-color-primary;" />
+            <VBox spacing="4">
+                <Label text="Mon Profil Entreprise" styleClass="title" />
+                <Label text="Gerez vos informations personnelles et d'entreprise" styleClass="subtitle" />
             </VBox>
         </HBox>
         
-        <HBox spacing="30">
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Nom de l'Entreprise" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <TextField fx:id="entrepriseField" />
+        <!-- Profile Card -->
+        <VBox styleClass="modern-card" spacing="24">
+            
+            <!-- Profile Header with Avatar -->
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 0 0 16 0; -fx-border-color: -fx-color-border; -fx-border-width: 0 0 1 0;">
+                <StackPane styleClass="avatar, avatar-xl" style="-fx-background-color: -fx-color-primary;">
+                    <Label fx:id="avatarInitials" text="U" 
+                           style="-fx-text-fill: white; -fx-font-weight: 700; -fx-font-size: 28px;" />
+                </StackPane>
+                <VBox spacing="4">
+                    <Label fx:id="profileNameLabel" text="Nom Utilisateur" 
+                           style="-fx-font-size: 22px; -fx-font-weight: 700;" />
+                    <Label text="Client" styleClass="badge" style="-fx-background-color: -fx-color-primary;" />
+                </VBox>
+            </HBox>
+            
+            <!-- Form Section -->
+            <VBox spacing="20">
+                <Label text="Informations Personnelles" styleClass="heading" />
+                
+                <HBox spacing="20">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Nom" styleClass="form-label" />
+                        <TextField fx:id="nomField" promptText="Votre nom" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Prenom" styleClass="form-label" />
+                        <TextField fx:id="prenomField" promptText="Votre prenom" />
+                    </VBox>
+                </HBox>
+                
+                <VBox spacing="8">
+                    <Label text="Adresse Email" styleClass="form-label" />
+                    <HBox styleClass="text-field" style="-fx-padding: 0;">
+                        <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                            <FontIcon iconLiteral="fth-mail" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </HBox>
+                        <TextField fx:id="emailField" promptText="email@exemple.com"
+                                   style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                   HBox.hgrow="ALWAYS" />
+                    </HBox>
+                </VBox>
             </VBox>
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Adresse postale" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <TextField fx:id="adresseField" />
+            
+            <Separator />
+            
+            <!-- Business Info -->
+            <VBox spacing="20">
+                <Label text="Informations Entreprise" styleClass="heading" />
+                
+                <HBox spacing="20">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Nom de l'Entreprise" styleClass="form-label" />
+                        <HBox styleClass="text-field" style="-fx-padding: 0;">
+                            <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                                <FontIcon iconLiteral="fth-briefcase" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                            </HBox>
+                            <TextField fx:id="entrepriseField" promptText="Nom de votre entreprise"
+                                       style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                       HBox.hgrow="ALWAYS" />
+                        </HBox>
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Adresse Postale" styleClass="form-label" />
+                        <HBox styleClass="text-field" style="-fx-padding: 0;">
+                            <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                                <FontIcon iconLiteral="fth-map-pin" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                            </HBox>
+                            <TextField fx:id="adresseField" promptText="Adresse complete"
+                                       style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                       HBox.hgrow="ALWAYS" />
+                        </HBox>
+                    </VBox>
+                </HBox>
             </VBox>
-        </HBox>
-
-        <VBox spacing="10">
-            <Label text="Adresse Email" styleClass="text-muted" style="-fx-font-weight: bold;" />
-            <TextField fx:id="emailField" />
+            
+            <Separator />
+            
+            <!-- Security -->
+            <VBox spacing="20">
+                <Label text="Securite" styleClass="heading" />
+                
+                <VBox spacing="8">
+                    <Label text="Nouveau mot de passe (laisser vide pour ne pas changer)" styleClass="form-label" />
+                    <HBox styleClass="text-field" style="-fx-padding: 0;">
+                        <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                            <FontIcon iconLiteral="fth-lock" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </HBox>
+                        <PasswordField fx:id="passwordField" promptText="Nouveau mot de passe"
+                                       style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                       HBox.hgrow="ALWAYS" />
+                    </HBox>
+                    <Label text="Minimum 8 caracteres, incluant lettres et chiffres" styleClass="form-hint" />
+                </VBox>
+            </VBox>
+            
+            <!-- Feedback Label -->
+            <Label fx:id="feedbackLabel" visible="false" managed="false" />
+            
+            <!-- Actions -->
+            <HBox alignment="CENTER_RIGHT" spacing="12" style="-fx-padding: 8 0 0 0;">
+                <Button text="Annuler" styleClass="button, secondary" />
+                <Button text="Enregistrer les modifications" styleClass="button, primary" onAction="#saveProfile">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-save" iconSize="16" style="-fx-icon-color: white;" />
+                    </graphic>
+                </Button>
+            </HBox>
         </VBox>
-        
-        <VBox spacing="10">
-            <Label text="Nouveau mot de passe (laisser vide pour ne pas changer)" styleClass="text-muted" style="-fx-font-weight: bold;" />
-            <PasswordField fx:id="passwordField" promptText="••••••••" />
-        </VBox>
-
-        <Label fx:id="feedbackLabel" visible="false" managed="false" />
-        
-        <HBox alignment="CENTER_RIGHT" spacing="15">
-            <Button text="Enregistrer les modifications" styleClass="button, primary" onAction="#saveProfile" />
-        </HBox>
     </VBox>
-</VBox>
+</ScrollPane>

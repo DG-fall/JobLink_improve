@@ -60,6 +60,12 @@
             <artifactId>ikonli-feather-pack</artifactId>
             <version>12.3.1</version>
         </dependency>
+        <!-- Pack d'icônes Material Design 2 (plus de choix) -->
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-materialdesign2-pack</artifactId>
+            <version>12.3.1</version>
+        </dependency>
     </dependencies>
 
     <build>

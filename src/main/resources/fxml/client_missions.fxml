@@ -2,19 +2,70 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientMissionsController" spacing="20">
-    <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="Mes Missions" styleClass="title" />
-        <Region HBox.hgrow="ALWAYS" />
-        <ComboBox fx:id="statusFilter" promptText="Tous les statuts" prefWidth="180" onAction="#handleFilter" />
-        <FontIcon iconLiteral="fth-search" iconSize="16" styleClass="text-muted" />
-        <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="220" onKeyReleased="#handleFilter" />
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.joblink.controller.ClientMissionsController" 
+      spacing="20"
+      style="-fx-background-color: transparent;">
+    <padding>
+        <Insets top="8" right="8" bottom="8" left="8" />
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <FontIcon iconLiteral="fth-layers" iconSize="28" style="-fx-icon-color: -fx-color-primary;" />
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Mes Missions" styleClass="title" />
+            <Label text="Gerez et suivez toutes vos missions" styleClass="subtitle" />
+        </VBox>
+        <Button text="Nouvelle Mission" styleClass="button, primary" onAction="#goToCreateMission">
+            <graphic>
+                <FontIcon iconLiteral="fth-plus" iconSize="16" style="-fx-icon-color: white;" />
+            </graphic>
+        </Button>
     </HBox>
-
-    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
-        <VBox fx:id="missionsBox" spacing="15">
-            <padding><javafx.geometry.Insets top="10" right="10" bottom="10" left="10" /></padding>
+    
+    <!-- Filters Card -->
+    <HBox styleClass="modern-card" spacing="16" alignment="CENTER_LEFT" style="-fx-padding: 16 20;">
+        <!-- Search -->
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: -fx-color-background-secondary; -fx-background-radius: 10; -fx-padding: 0 12;"
+              HBox.hgrow="ALWAYS" maxWidth="350">
+            <FontIcon iconLiteral="fth-search" iconSize="16" style="-fx-icon-color: -fx-color-muted-foreground;" />
+            <TextField fx:id="searchField" promptText="Rechercher une mission..."
+                       style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 10;"
+                       onKeyReleased="#handleFilter" HBox.hgrow="ALWAYS" />
+        </HBox>
+        
+        <!-- Status Filter -->
+        <VBox spacing="4">
+            <Label text="Statut" styleClass="caption" />
+            <ComboBox fx:id="statusFilter" promptText="Tous les statuts" prefWidth="180" onAction="#handleFilter" />
+        </VBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <!-- Quick Stats -->
+        <HBox spacing="20">
+            <VBox alignment="CENTER" spacing="2">
+                <Label fx:id="lblTotalMissions" text="0" style="-fx-font-size: 20px; -fx-font-weight: 700; -fx-text-fill: -fx-color-primary;" />
+                <Label text="Total" styleClass="caption" />
+            </VBox>
+            <Separator orientation="VERTICAL" />
+            <VBox alignment="CENTER" spacing="2">
+                <Label fx:id="lblActiveMissions" text="0" style="-fx-font-size: 20px; -fx-font-weight: 700; -fx-text-fill: -fx-color-success;" />
+                <Label text="Actives" styleClass="caption" />
+            </VBox>
+        </HBox>
+    </HBox>
+    
+    <!-- Missions List -->
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
+        <VBox fx:id="missionsBox" spacing="16">
+            <padding>
+                <Insets top="4" right="4" bottom="20" left="4" />
+            </padding>
         </VBox>
     </ScrollPane>
 </VBox>

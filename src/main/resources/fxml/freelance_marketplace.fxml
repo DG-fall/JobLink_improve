@@ -2,28 +2,84 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelanceMarketplaceController" spacing="15">
-    <Label text="Marketplace des Missions" styleClass="title" />
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.joblink.controller.FreelanceMarketplaceController" 
+      spacing="20"
+      style="-fx-background-color: transparent;">
+    <padding>
+        <Insets top="8" right="8" bottom="8" left="8" />
+    </padding>
     
-    <!-- Filter Row -->
-    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="modern-card-small">
-        <FontIcon iconLiteral="fth-search" iconSize="16" styleClass="text-muted" />
-        <TextField fx:id="searchField" promptText="Recherche par mot-clé..." prefWidth="250" onKeyReleased="#applyFilters" />
-        <ComboBox fx:id="competenceFilter" promptText="Compétence..." prefWidth="200" onAction="#applyFilters" />
-        <Label text="Budget Min (€):" style="-fx-text-fill: -fx-color-muted-foreground;" />
-        <TextField fx:id="budgetMinField" promptText="0" prefWidth="80" onKeyReleased="#applyFilters" />
-        <Label text="Max (€):" style="-fx-text-fill: -fx-color-muted-foreground;" />
-        <TextField fx:id="budgetMaxField" promptText="∞" prefWidth="80" onKeyReleased="#applyFilters" />
-        <Region HBox.hgrow="ALWAYS" />
-        <Button text="Réinitialiser" styleClass="button, secondary" onAction="#resetFilters" />
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Marketplace" styleClass="title" />
+            <Label text="Decouvrez les missions disponibles et postulez" styleClass="subtitle" />
+        </VBox>
+        <HBox spacing="8" alignment="CENTER_RIGHT">
+            <Label fx:id="resultCountLabel" styleClass="caption" />
+        </HBox>
     </HBox>
     
-    <Label fx:id="resultCountLabel" style="-fx-text-fill: -fx-color-muted-foreground; -fx-font-size: 13px;" />
+    <!-- Filter Card -->
+    <VBox styleClass="modern-card" spacing="16" style="-fx-padding: 20;">
+        <HBox spacing="16" alignment="CENTER_LEFT">
+            <!-- Search -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: -fx-color-background-secondary; -fx-background-radius: 10; -fx-padding: 0 16;"
+                  HBox.hgrow="ALWAYS" maxWidth="400">
+                <FontIcon iconLiteral="fth-search" iconSize="18" style="-fx-icon-color: #94A3B8;" />
+                <TextField fx:id="searchField" promptText="Rechercher par mot-cle..."
+                           style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                           onKeyReleased="#applyFilters" HBox.hgrow="ALWAYS" />
+            </HBox>
+            
+            <!-- Competence Filter -->
+            <VBox spacing="4">
+                <Label text="Competence" styleClass="caption" />
+                <ComboBox fx:id="competenceFilter" promptText="Toutes" prefWidth="180" onAction="#applyFilters" />
+            </VBox>
+            
+            <!-- Budget Range -->
+            <VBox spacing="4">
+                <Label text="Budget Min" styleClass="caption" />
+                <TextField fx:id="budgetMinField" promptText="0 EUR" prefWidth="100" onKeyReleased="#applyFilters" />
+            </VBox>
+            
+            <VBox spacing="4">
+                <Label text="Budget Max" styleClass="caption" />
+                <TextField fx:id="budgetMaxField" promptText="Illimite" prefWidth="100" onKeyReleased="#applyFilters" />
+            </VBox>
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <Button text="Reinitialiser" styleClass="button, ghost" onAction="#resetFilters">
+                <graphic>
+                    <FontIcon iconLiteral="fth-x" iconSize="14" />
+                </graphic>
+            </Button>
+        </HBox>
+        
+        <!-- Quick Filters -->
+        <HBox spacing="8">
+            <Button text="Toutes" styleClass="button, sm, secondary" style="-fx-background-color: -fx-color-primary; -fx-text-fill: white;" />
+            <Button text="Developpement" styleClass="button, sm, ghost" />
+            <Button text="Design" styleClass="button, sm, ghost" />
+            <Button text="Marketing" styleClass="button, sm, ghost" />
+            <Button text="Redaction" styleClass="button, sm, ghost" />
+            <Button text="Consulting" styleClass="button, sm, ghost" />
+        </HBox>
+    </VBox>
     
-    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;" VBox.vgrow="ALWAYS">
-        <TilePane fx:id="missionsGrid" hgap="20" vgap="20" prefColumns="2">
-            <padding><javafx.geometry.Insets top="5" right="5" bottom="5" left="5" /></padding>
+    <!-- Missions Grid -->
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" 
+                style="-fx-background-color: transparent; -fx-background: transparent;" 
+                VBox.vgrow="ALWAYS">
+        <TilePane fx:id="missionsGrid" hgap="20" vgap="20" prefColumns="2" 
+                  style="-fx-padding: 4;">
+            <!-- Mission cards loaded dynamically -->
         </TilePane>
     </ScrollPane>
+    
 </VBox>

@@ -2,20 +2,64 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelancePortfolioController" spacing="20">
-    <HBox alignment="CENTER_LEFT" spacing="20">
-        <Label text="Mon Portfolio" styleClass="title" />
-        <Region HBox.hgrow="ALWAYS" />
-        <Button text="Ajouter une réalisation" styleClass="button, primary" onAction="#addPortfolioItem">
-            <graphic><FontIcon iconLiteral="fth-plus" style="-fx-icon-color: white;" /></graphic>
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.joblink.controller.FreelancePortfolioController" 
+      spacing="20"
+      style="-fx-background-color: transparent;">
+    <padding>
+        <Insets top="8" right="8" bottom="8" left="8" />
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <FontIcon iconLiteral="fth-image" iconSize="28" style="-fx-icon-color: -fx-color-primary;" />
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Mon Portfolio" styleClass="title" />
+            <Label text="Presentez vos meilleures realisations aux clients potentiels" styleClass="subtitle" />
+        </VBox>
+        <Button text="Ajouter une realisation" styleClass="button, primary" onAction="#addPortfolioItem">
+            <graphic>
+                <FontIcon iconLiteral="fth-plus" iconSize="16" style="-fx-icon-color: white;" />
+            </graphic>
         </Button>
     </HBox>
     
-    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
+    <!-- Stats Bar -->
+    <HBox styleClass="modern-card" spacing="24" alignment="CENTER_LEFT" style="-fx-padding: 16 24;">
+        <VBox spacing="2">
+            <Label fx:id="lblTotalProjects" text="0" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: -fx-color-primary;" />
+            <Label text="Projets" styleClass="caption" />
+        </VBox>
+        <Separator orientation="VERTICAL" />
+        <VBox spacing="2">
+            <Label fx:id="lblTotalViews" text="0" style="-fx-font-size: 24px; -fx-font-weight: 700;" />
+            <Label text="Vues" styleClass="caption" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox spacing="8">
+            <Button styleClass="icon-button" style="-fx-background-color: -fx-color-background-secondary;">
+                <graphic>
+                    <FontIcon iconLiteral="fth-grid" iconSize="18" />
+                </graphic>
+            </Button>
+            <Button styleClass="icon-button">
+                <graphic>
+                    <FontIcon iconLiteral="fth-list" iconSize="18" />
+                </graphic>
+            </Button>
+        </HBox>
+    </HBox>
+    
+    <!-- Portfolio Grid -->
+    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS"
+                style="-fx-background-color: transparent; -fx-background: transparent;">
         <TilePane fx:id="portfolioGrid" hgap="20" vgap="20" prefColumns="3">
-            <padding><javafx.geometry.Insets top="10" right="10" bottom="10" left="10" /></padding>
-            <!-- Generated in controller -->
+            <padding>
+                <Insets top="8" right="8" bottom="20" left="8" />
+            </padding>
+            <!-- Portfolio items rendered dynamically -->
         </TilePane>
     </ScrollPane>
 </VBox>

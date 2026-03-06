@@ -1,80 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.shape.Circle?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.DashboardClient" prefWidth="1280" prefHeight="800">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.joblink.controller.DashboardClient" 
+            prefWidth="1400" prefHeight="900"
+            stylesheets="@../css/styles.css">
     
+    <!-- Sidebar -->
     <left>
-        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="250" spacing="8">
-            <padding><Insets top="20" right="15" bottom="20" left="15" /></padding>
+        <VBox fx:id="sidebar" styleClass="sidebar" prefWidth="260" spacing="4">
             
-            <HBox alignment="CENTER_LEFT" spacing="15">
-                <padding><Insets bottom="25" /></padding>
-                <Button fx:id="btnSidebarToggle" styleClass="icon-button" onAction="#toggleSidebar">
-                    <graphic>
-                        <FontIcon iconLiteral="fth-menu" iconSize="24" />
-                    </graphic>
-                </Button>
-                <FontIcon fx:id="logoIcon" iconLiteral="fth-briefcase" iconSize="28" style="-fx-icon-color: -fx-color-primary;" />
-                <Label text="JobLink" styleClass="sidebar-title" />
+            <!-- Sidebar Header -->
+            <HBox styleClass="sidebar-header" alignment="CENTER_LEFT" spacing="12">
+                <StackPane style="-fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 12;"
+                           prefWidth="44" prefHeight="44" alignment="CENTER">
+                    <FontIcon iconLiteral="fth-briefcase" iconSize="22" style="-fx-icon-color: white;" />
+                </StackPane>
+                <Label text="JobLink" styleClass="sidebar-logo" />
             </HBox>
             
-            <Label text="PRINCIPAL" style="-fx-font-size: 10px; -fx-text-fill: -fx-color-muted-foreground; -fx-font-weight: bold; -fx-padding: 5 0 3 10;" />
-            
-            <Button fx:id="btnHome" text="Tableau de bord" styleClass="nav-button, active" maxWidth="Infinity" onAction="#showHome">
-                <graphic>
-                    <FontIcon iconLiteral="fth-home" iconSize="20" />
-                </graphic>
-            </Button>
-            <Button fx:id="btnMissions" text="Mes Missions" styleClass="nav-button" maxWidth="Infinity" onAction="#showMissions">
-                <graphic>
-                    <FontIcon iconLiteral="fth-briefcase" iconSize="20" />
-                </graphic>
-            </Button>
-            <Button fx:id="btnCreateMission" text="Créer une Mission" styleClass="nav-button" maxWidth="Infinity" onAction="#showCreateMission">
-                <graphic>
-                    <FontIcon iconLiteral="fth-plus-circle" iconSize="20" />
-                </graphic>
-            </Button>
-            <Button fx:id="btnPropositions" text="Propositions" styleClass="nav-button" maxWidth="Infinity" onAction="#showPropositions">
-                <graphic>
-                    <FontIcon iconLiteral="fth-file-text" iconSize="20" />
-                </graphic>
-            </Button>
-            <Button fx:id="btnFactures" text="Mes Factures" styleClass="nav-button" maxWidth="Infinity" onAction="#showFactures">
-                <graphic>
-                    <FontIcon iconLiteral="fth-dollar-sign" iconSize="20" />
-                </graphic>
-            </Button>
+            <!-- Navigation -->
+            <VBox styleClass="sidebar-nav" spacing="4">
+                <Label text="PRINCIPAL" styleClass="sidebar-section-title" />
+                <padding><Insets top="8" /></padding>
+                
+                <Button fx:id="btnHome" text="Tableau de bord" styleClass="nav-button, active" maxWidth="Infinity" onAction="#showHome">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-home" iconSize="20" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btnMissions" text="Mes Missions" styleClass="nav-button" maxWidth="Infinity" onAction="#showMissions">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-layers" iconSize="20" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btnCreateMission" text="Nouvelle Mission" styleClass="nav-button" maxWidth="Infinity" onAction="#showCreateMission">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-plus-circle" iconSize="20" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btnPropositions" text="Propositions" styleClass="nav-button" maxWidth="Infinity" onAction="#showPropositions">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-file-text" iconSize="20" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btnFactures" text="Factures" styleClass="nav-button" maxWidth="Infinity" onAction="#showFactures">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-credit-card" iconSize="20" />
+                    </graphic>
+                </Button>
+            </VBox>
             
             <Region VBox.vgrow="ALWAYS" />
             
-            <Label text="COMPTE" style="-fx-font-size: 10px; -fx-text-fill: -fx-color-muted-foreground; -fx-font-weight: bold; -fx-padding: 5 0 3 10;" />
-            <Button fx:id="btnMessages" text="Messages" styleClass="nav-button" maxWidth="Infinity" onAction="#showMessages">
-                <graphic>
-                    <FontIcon iconLiteral="fth-message-circle" iconSize="20" />
-                </graphic>
-            </Button>
-            <Button fx:id="btnProfile" text="Profil" styleClass="nav-button" maxWidth="Infinity" onAction="#showProfile">
-                <graphic>
-                    <FontIcon iconLiteral="fth-user" iconSize="20" />
-                </graphic>
-            </Button>
-            <Button fx:id="btnLogout" text="Se déconnecter" styleClass="nav-button" style="-fx-text-fill: -fx-color-destructive;" maxWidth="Infinity" onAction="#handleLogout">
-                <graphic>
-                    <FontIcon iconLiteral="fth-log-out" iconSize="20" style="-fx-icon-color: -fx-color-destructive;" />
-                </graphic>
-            </Button>
+            <!-- Bottom Navigation -->
+            <VBox styleClass="sidebar-nav" spacing="4">
+                <Label text="COMPTE" styleClass="sidebar-section-title" />
+                <padding><Insets top="8" /></padding>
+                
+                <Button fx:id="btnMessages" text="Messages" styleClass="nav-button" maxWidth="Infinity" onAction="#showMessages">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-message-circle" iconSize="20" />
+                    </graphic>
+                </Button>
+                <Button fx:id="btnProfile" text="Mon Profil" styleClass="nav-button" maxWidth="Infinity" onAction="#showProfile">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-user" iconSize="20" />
+                    </graphic>
+                </Button>
+            </VBox>
+            
+            <!-- Sidebar Footer with User -->
+            <VBox styleClass="sidebar-footer">
+                <HBox styleClass="sidebar-user" alignment="CENTER_LEFT" spacing="12">
+                    <StackPane styleClass="avatar, avatar-md" 
+                               style="-fx-background-color: rgba(255,255,255,0.25);">
+                        <Label fx:id="userInitials" text="U" 
+                               style="-fx-text-fill: white; -fx-font-weight: 700; -fx-font-size: 14px;" />
+                    </StackPane>
+                    <VBox spacing="2" HBox.hgrow="ALWAYS">
+                        <Label fx:id="userNameLabel" text="Utilisateur" styleClass="sidebar-user-name" />
+                        <Label text="Client" styleClass="sidebar-user-role" />
+                    </VBox>
+                    <Button styleClass="icon-button" onAction="#handleLogout" 
+                            style="-fx-background-color: transparent;">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-log-out" iconSize="18" style="-fx-icon-color: rgba(255,255,255,0.7);" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
         </VBox>
     </left>
     
+    <!-- Main Content -->
     <center>
-        <VBox>
-            <HBox styleClass="top-bar" alignment="CENTER_RIGHT" spacing="20">
+        <VBox style="-fx-background-color: -fx-color-background;">
+            
+            <!-- Top Bar -->
+            <HBox styleClass="top-bar" alignment="CENTER" spacing="16">
+                <Button fx:id="btnSidebarToggle" styleClass="icon-button" onAction="#toggleSidebar">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-menu" iconSize="20" />
+                    </graphic>
+                </Button>
+                
+                <!-- Search -->
+                <HBox alignment="CENTER_LEFT" style="-fx-background-color: -fx-color-background-secondary; -fx-background-radius: 10; -fx-padding: 0 16;">
+                    <FontIcon iconLiteral="fth-search" iconSize="18" style="-fx-icon-color: #94A3B8;" />
+                    <TextField fx:id="searchField" promptText="Rechercher..." 
+                               styleClass="search-field"
+                               style="-fx-background-color: transparent; -fx-border-color: transparent;" />
+                </HBox>
+                
                 <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Actions -->
                 <Button fx:id="btnThemeToggle" styleClass="icon-button" onAction="#toggleTheme">
                     <graphic>
                         <FontIcon iconLiteral="fth-moon" iconSize="20" />
@@ -85,12 +130,11 @@
                         <FontIcon iconLiteral="fth-bell" iconSize="20" />
                     </graphic>
                 </Button>
-                <Label text="Client" style="-fx-text-fill: -fx-color-muted-foreground; -fx-font-size: 13px;" />
-                <Label fx:id="userNameLabel" style="-fx-font-weight: bold; -fx-font-size: 15px;" />
-                <Circle style="-fx-fill: -fx-color-primary;" radius="16" />
             </HBox>
-            <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS">
-                <padding><Insets top="30" right="40" bottom="30" left="40" /></padding>
+            
+            <!-- Content Area -->
+            <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS" styleClass="content-area">
+                <!-- Dynamic content loaded here -->
             </StackPane>
         </VBox>
     </center>

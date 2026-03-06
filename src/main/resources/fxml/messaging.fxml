@@ -1,33 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.MessagingController" spacing="0" style="-fx-background-color: -fx-color-background;">
-    <Label text="Messagerie" styleClass="title" style="-fx-padding: 0 0 20 0;" />
+<VBox xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.joblink.controller.MessagingController" 
+      spacing="0" 
+      style="-fx-background-color: transparent;">
     
-    <HBox VBox.vgrow="ALWAYS" spacing="0" styleClass="modern-card" style="-fx-padding: 0;">
-        <!-- Contact List -->
-        <VBox prefWidth="280" style="-fx-border-color: -fx-color-border; -fx-border-width: 0 1 0 0;">
-            <Label text="Conversations" style="-fx-font-weight: bold; -fx-padding: 20 15; -fx-font-size: 15px;" />
-            <Separator />
-            <ListView fx:id="contactsList" VBox.vgrow="ALWAYS" style="-fx-border-color: transparent; -fx-background-color: transparent;" onMouseClicked="#handleContactSelected" />
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding: 0 0 20 8;">
+        <FontIcon iconLiteral="fth-message-circle" iconSize="28" style="-fx-icon-color: -fx-color-primary;" />
+        <VBox spacing="2">
+            <Label text="Messagerie" styleClass="title" />
+            <Label text="Vos conversations avec clients et freelances" styleClass="caption" />
+        </VBox>
+    </HBox>
+    
+    <HBox VBox.vgrow="ALWAYS" spacing="0" styleClass="modern-card" style="-fx-padding: 0; -fx-overflow: hidden;">
+        
+        <!-- Contact List Panel -->
+        <VBox prefWidth="320" style="-fx-border-color: -fx-color-border; -fx-border-width: 0 1 0 0; -fx-background-color: -fx-color-card;">
+            
+            <!-- Contact List Header -->
+            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding: 20 16; -fx-border-color: -fx-color-border; -fx-border-width: 0 0 1 0;">
+                <Label text="Conversations" style="-fx-font-weight: 700; -fx-font-size: 16px;" HBox.hgrow="ALWAYS" />
+                <Button styleClass="icon-button" style="-fx-padding: 8;">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-edit" iconSize="16" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                    </graphic>
+                </Button>
+            </HBox>
+            
+            <!-- Search in Contacts -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: -fx-color-background-secondary; -fx-background-radius: 10; -fx-padding: 0 12; -fx-margin: 12;">
+                <padding>
+                    <Insets top="12" right="16" bottom="12" left="16" />
+                </padding>
+                <HBox alignment="CENTER_LEFT" style="-fx-background-color: -fx-color-background; -fx-background-radius: 8; -fx-padding: 0 12;" HBox.hgrow="ALWAYS">
+                    <FontIcon iconLiteral="fth-search" iconSize="14" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                    <TextField fx:id="searchContactField" promptText="Rechercher..."
+                               style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 8 8 8 8;"
+                               HBox.hgrow="ALWAYS" />
+                </HBox>
+            </HBox>
+            
+            <!-- Contact ListView -->
+            <ListView fx:id="contactsList" VBox.vgrow="ALWAYS" 
+                      style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-padding: 8;" 
+                      onMouseClicked="#handleContactSelected" />
         </VBox>
         
         <!-- Chat Panel -->
-        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="10" style="-fx-border-width: 0 0 1 0;">
-                <Label fx:id="contactNameLabel" text="Sélectionnez une conversation" style="-fx-font-weight: bold; -fx-font-size: 16px;" />
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" style="-fx-background-color: -fx-color-background-secondary;">
+            
+            <!-- Chat Header -->
+            <HBox styleClass="top-bar" alignment="CENTER_LEFT" spacing="12" 
+                  style="-fx-background-color: -fx-color-card; -fx-border-color: -fx-color-border; -fx-border-width: 0 0 1 0; -fx-padding: 16 20;">
+                
+                <!-- Contact Avatar -->
+                <StackPane fx:id="contactAvatar" styleClass="avatar, avatar-md" 
+                           style="-fx-background-color: -fx-color-primary;">
+                    <Label fx:id="contactInitials" text="?" 
+                           style="-fx-text-fill: white; -fx-font-weight: 700; -fx-font-size: 14px;" />
+                </StackPane>
+                
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label fx:id="contactNameLabel" text="Selectionnez une conversation" 
+                           style="-fx-font-weight: 600; -fx-font-size: 15px;" />
+                    <HBox alignment="CENTER_LEFT" spacing="6">
+                        <Region fx:id="statusIndicator" styleClass="status-online" />
+                        <Label fx:id="statusLabel" text="En ligne" styleClass="caption" />
+                    </HBox>
+                </VBox>
+                
+                <HBox spacing="8">
+                    <Button styleClass="icon-button">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-phone" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </graphic>
+                    </Button>
+                    <Button styleClass="icon-button">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-video" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </graphic>
+                    </Button>
+                    <Button styleClass="icon-button">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-more-vertical" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </graphic>
+                    </Button>
+                </HBox>
             </HBox>
             
-            <ScrollPane fx:id="chatScroll" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: -fx-color-muted; -fx-padding: 15;">
-                <VBox fx:id="messagesBox" spacing="12">
-                    <padding><javafx.geometry.Insets top="15" right="15" bottom="15" left="15" /></padding>
+            <!-- Messages Area -->
+            <ScrollPane fx:id="chatScroll" fitToWidth="true" VBox.vgrow="ALWAYS" 
+                        style="-fx-background-color: transparent; -fx-background: transparent;">
+                <VBox fx:id="messagesBox" spacing="12" style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20" />
+                    </padding>
+                    
+                    <!-- Empty state placeholder -->
+                    <VBox fx:id="emptyState" alignment="CENTER" spacing="16" style="-fx-padding: 60;">
+                        <StackPane prefWidth="80" prefHeight="80" 
+                                   style="-fx-background-color: -fx-color-background; -fx-background-radius: 40;">
+                            <FontIcon iconLiteral="fth-message-circle" iconSize="36" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </StackPane>
+                        <Label text="Selectionnez une conversation" styleClass="heading" style="-fx-text-fill: -fx-color-muted-foreground;" />
+                        <Label text="Choisissez un contact dans la liste pour voir vos messages" 
+                               styleClass="caption" style="-fx-text-alignment: center;" wrapText="true" />
+                    </VBox>
                 </VBox>
             </ScrollPane>
             
-            <HBox spacing="15" style="-fx-padding: 15; -fx-background-color: -fx-color-card; -fx-border-color: -fx-color-border; -fx-border-width: 1 0 0 0;" alignment="CENTER">
-                <TextField fx:id="messageField" promptText="Écrire un message..." HBox.hgrow="ALWAYS" onAction="#sendMessage" />
-                <Button text="Envoyer ➤" styleClass="button, primary" onAction="#sendMessage" />
+            <!-- Message Input Area -->
+            <HBox spacing="12" alignment="CENTER" 
+                  style="-fx-padding: 16 20; -fx-background-color: -fx-color-card; -fx-border-color: -fx-color-border; -fx-border-width: 1 0 0 0;">
+                
+                <!-- Attachments Button -->
+                <Button styleClass="icon-button">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-paperclip" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                    </graphic>
+                </Button>
+                
+                <!-- Message Input -->
+                <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: -fx-color-background-secondary; -fx-background-radius: 24; -fx-padding: 4 4 4 16;">
+                    <TextField fx:id="messageField" promptText="Ecrire un message..."
+                               style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 8;"
+                               onAction="#sendMessage" HBox.hgrow="ALWAYS" />
+                    
+                    <!-- Emoji Button -->
+                    <Button styleClass="icon-button" style="-fx-padding: 8;">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-smile" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </graphic>
+                    </Button>
+                </HBox>
+                
+                <!-- Send Button -->
+                <Button styleClass="button, primary" style="-fx-padding: 12; -fx-background-radius: 24;" onAction="#sendMessage">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-send" iconSize="18" style="-fx-icon-color: white;" />
+                    </graphic>
+                </Button>
             </HBox>
         </VBox>
     </HBox>

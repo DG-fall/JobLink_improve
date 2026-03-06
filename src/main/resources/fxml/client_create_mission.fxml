@@ -2,55 +2,132 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.ClientCreateMissionController" spacing="20">
-    <Label text="Créer une nouvelle Mission" styleClass="title" />
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.joblink.controller.ClientCreateMissionController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background-color: transparent; -fx-background: transparent;">
     
-    <ScrollPane fitToWidth="true" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-padding: 0;">
-        <VBox spacing="25" styleClass="modern-card">
-            <padding><javafx.geometry.Insets top="30" right="40" bottom="30" left="40" /></padding>
+    <VBox spacing="24" style="-fx-background-color: transparent;">
+        <padding>
+            <Insets top="8" right="8" bottom="24" left="8" />
+        </padding>
+        
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <StackPane style="-fx-background-color: -fx-color-primary; -fx-background-radius: 12;"
+                       prefWidth="48" prefHeight="48" alignment="CENTER">
+                <FontIcon iconLiteral="fth-plus-circle" iconSize="24" style="-fx-icon-color: white;" />
+            </StackPane>
+            <VBox spacing="4">
+                <Label text="Creer une Nouvelle Mission" styleClass="title" />
+                <Label text="Decrivez votre projet pour attirer les meilleurs freelances" styleClass="subtitle" />
+            </VBox>
+        </HBox>
+        
+        <!-- Form Card -->
+        <VBox styleClass="modern-card" spacing="24">
             
-            <VBox spacing="10">
-                <Label text="Titre de la mission" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <TextField fx:id="titreField" promptText="Ex: Développeur Fullstack React/Java" />
+            <!-- Basic Info Section -->
+            <VBox spacing="20">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <FontIcon iconLiteral="fth-file-text" iconSize="18" style="-fx-icon-color: -fx-color-primary;" />
+                    <Label text="Informations de Base" styleClass="heading" />
+                </HBox>
+                
+                <VBox spacing="8">
+                    <Label text="Titre de la mission" styleClass="form-label" />
+                    <TextField fx:id="titreField" promptText="Ex: Developpeur Fullstack React/Java" />
+                    <Label text="Un titre clair et precis attire plus de candidats" styleClass="form-hint" />
+                </VBox>
+                
+                <VBox spacing="8">
+                    <Label text="Description detaillee" styleClass="form-label" />
+                    <TextArea fx:id="descriptionArea" 
+                              promptText="Decrivez les objectifs, le contexte, les livrables attendus et les criteres de reussite..." 
+                              prefRowCount="6" wrapText="true" />
+                    <Label text="Soyez precis sur vos attentes pour recevoir des propositions pertinentes" styleClass="form-hint" />
+                </VBox>
             </VBox>
             
-            <VBox spacing="10">
-                <Label text="Description détaillée" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <TextArea fx:id="descriptionArea" promptText="Décrivez les objectifs, le contexte, et ce que vous attendez..." prefRowCount="6" wrapText="true" />
-            </VBox>
+            <Separator />
             
-            <HBox spacing="25">
-                <VBox spacing="10" HBox.hgrow="ALWAYS">
-                    <Label text="Budget Total (€)" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                    <TextField fx:id="budgetField" promptText="Ex: 2500" />
-                </VBox>
-                <VBox spacing="10" HBox.hgrow="ALWAYS">
-                    <Label text="Date limite" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                    <DatePicker fx:id="dateLimitePicker" promptText="Sélectionnez une date limite" maxWidth="Infinity" styleClass="text-field" />
-                </VBox>
-                <VBox spacing="10" HBox.hgrow="ALWAYS">
-                    <Label text="Date livraison (Optionnel)" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                    <DatePicker fx:id="dateLivraisonPicker" promptText="Sélectionnez une date prévue" maxWidth="Infinity" styleClass="text-field" />
-                </VBox>
-            </HBox>
-            
-            <VBox spacing="10">
-                <Label text="Compétences requises (Sélectionnez plusieurs)" styleClass="text-muted" style="-fx-font-weight: bold;" />
-                <ListView fx:id="competencesListView" prefHeight="150" />
-                <!-- Option to add new competence could be here -->
-                <HBox spacing="10">
-                    <TextField fx:id="newCompetenceField" promptText="Nouvelle compétence..." HBox.hgrow="ALWAYS" />
-                    <Button text="Ajouter à la liste" onAction="#handleAddNewCompetence" styleClass="button, secondary" />
+            <!-- Budget and Dates Section -->
+            <VBox spacing="20">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <FontIcon iconLiteral="fth-calendar" iconSize="18" style="-fx-icon-color: -fx-color-primary;" />
+                    <Label text="Budget et Delais" styleClass="heading" />
+                </HBox>
+                
+                <HBox spacing="20">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Budget Total (EUR)" styleClass="form-label" />
+                        <HBox styleClass="text-field" style="-fx-padding: 0;">
+                            <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                                <FontIcon iconLiteral="fth-dollar-sign" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                            </HBox>
+                            <TextField fx:id="budgetField" promptText="Ex: 2500"
+                                       style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                       HBox.hgrow="ALWAYS" />
+                        </HBox>
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Date limite de candidature" styleClass="form-label" />
+                        <DatePicker fx:id="dateLimitePicker" promptText="Selectionnez une date" maxWidth="Infinity" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Date de livraison prevue (optionnel)" styleClass="form-label" />
+                        <DatePicker fx:id="dateLivraisonPicker" promptText="Date estimee" maxWidth="Infinity" />
+                    </VBox>
                 </HBox>
             </VBox>
             
-            <Label fx:id="feedbackLabel" visible="false" managed="false" style="-fx-font-weight: bold;" />
+            <Separator />
             
-            <HBox alignment="CENTER_RIGHT" spacing="15">
-                <Button text="Annuler" styleClass="button, secondary" onAction="#handleCancel" />
-                <Button text="Publier la mission" styleClass="button, primary" onAction="#handleCreate" />
+            <!-- Skills Section -->
+            <VBox spacing="20">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <FontIcon iconLiteral="fth-award" iconSize="18" style="-fx-icon-color: -fx-color-primary;" />
+                    <Label text="Competences Requises" styleClass="heading" />
+                </HBox>
+                
+                <VBox spacing="8">
+                    <Label text="Selectionnez les competences necessaires" styleClass="form-label" />
+                    <VBox styleClass="modern-card" style="-fx-background-color: -fx-color-background-secondary; -fx-padding: 12;">
+                        <ListView fx:id="competencesListView" prefHeight="150" style="-fx-background-color: transparent;" />
+                    </VBox>
+                </VBox>
+                
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <TextField fx:id="newCompetenceField" promptText="Ajouter une nouvelle competence..." HBox.hgrow="ALWAYS" />
+                    <Button text="Ajouter" onAction="#handleAddNewCompetence" styleClass="button, secondary">
+                        <graphic>
+                            <FontIcon iconLiteral="fth-plus" iconSize="14" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+            
+            <!-- Feedback Label -->
+            <Label fx:id="feedbackLabel" visible="false" managed="false" />
+            
+            <!-- Actions -->
+            <HBox alignment="CENTER_RIGHT" spacing="12" style="-fx-padding: 8 0 0 0; -fx-border-color: -fx-color-border; -fx-border-width: 1 0 0 0;">
+                <padding>
+                    <Insets top="20" />
+                </padding>
+                <Button text="Annuler" styleClass="button, secondary" onAction="#handleCancel">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-x" iconSize="14" />
+                    </graphic>
+                </Button>
+                <Button text="Publier la Mission" styleClass="button, primary, lg" onAction="#handleCreate">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-send" iconSize="16" style="-fx-icon-color: white;" />
+                    </graphic>
+                </Button>
             </HBox>
         </VBox>
-    </ScrollPane>
-</VBox>
+    </VBox>
+</ScrollPane>
