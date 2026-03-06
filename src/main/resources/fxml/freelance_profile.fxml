@@ -1,78 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
 
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joblink.controller.FreelanceProfileController"
-    fitToWidth="true" style="-fx-background-color: transparent; -fx-padding: 0;">
-<VBox spacing="25">
-    <padding><javafx.geometry.Insets top="5" right="5" bottom="20" left="5" /></padding>
-    <Label text="Mon Profil Freelance" styleClass="title" />
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.joblink.controller.FreelanceProfileController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background-color: transparent; -fx-background: transparent;">
     
-    <VBox spacing="25" styleClass="modern-card">
-        <padding><javafx.geometry.Insets top="30" right="40" bottom="30" left="40" /></padding>
+    <VBox spacing="24" style="-fx-background-color: transparent;">
+        <padding>
+            <Insets top="8" right="8" bottom="24" left="8" />
+        </padding>
         
-        <HBox spacing="30">
-            <VBox spacing="8" HBox.hgrow="ALWAYS">
-                <Label text="Nom" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
-                <TextField fx:id="nomField" />
-            </VBox>
-            <VBox spacing="8" HBox.hgrow="ALWAYS">
-                <Label text="Prénom" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
-                <TextField fx:id="prenomField" />
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <FontIcon iconLiteral="fth-user" iconSize="28" style="-fx-icon-color: -fx-color-primary;" />
+            <VBox spacing="4">
+                <Label text="Mon Profil Freelance" styleClass="title" />
+                <Label text="Gerez vos informations, competences et evaluations" styleClass="subtitle" />
             </VBox>
         </HBox>
         
-        <VBox spacing="8">
-            <Label text="Adresse Email" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
-            <TextField fx:id="emailField" />
-        </VBox>
-        
-        <VBox spacing="8">
-            <Label text="Nouveau mot de passe (laisser vide pour ne pas changer)" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
-            <PasswordField fx:id="passwordField" promptText="••••••••" />
-        </VBox>
-        
-        <Separator />
-        
-        <VBox spacing="8" maxWidth="300">
-            <Label text="Tarif Journalier Moyen (TJM) en €" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
-            <TextField fx:id="tarifField" />
-        </VBox>
-
-        <VBox spacing="10">
-            <Label text="Mes Compétences" style="-fx-font-weight: bold; -fx-text-fill: -fx-color-muted-foreground;" />
-            <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" prefHeight="90">
-                <FlowPane fx:id="competencesBox" hgap="10" vgap="10" />
-            </ScrollPane>
-            <HBox spacing="10">
-                <TextField fx:id="newCompetenceField" promptText="Ajouter une compétence..." HBox.hgrow="ALWAYS" />
-                <Button text="Ajouter" onAction="#addCompetence" styleClass="button, secondary" />
+        <!-- Profile Card -->
+        <VBox styleClass="modern-card" spacing="24">
+            
+            <!-- Profile Header with Avatar -->
+            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 0 0 16 0; -fx-border-color: -fx-color-border; -fx-border-width: 0 0 1 0;">
+                <StackPane styleClass="avatar, avatar-xl" style="-fx-background-color: -fx-color-primary;">
+                    <Label fx:id="avatarInitials" text="F" 
+                           style="-fx-text-fill: white; -fx-font-weight: 700; -fx-font-size: 28px;" />
+                </StackPane>
+                <VBox spacing="4" HBox.hgrow="ALWAYS">
+                    <Label fx:id="profileNameLabel" text="Nom Freelance" 
+                           style="-fx-font-size: 22px; -fx-font-weight: 700;" />
+                    <HBox spacing="8">
+                        <Label text="Freelance" styleClass="badge" style="-fx-background-color: #8B5CF6;" />
+                        <HBox spacing="4" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fth-star" iconSize="14" style="-fx-icon-color: #F59E0B;" />
+                            <Label fx:id="lblHeaderRating" text="4.8" style="-fx-font-weight: 600;" />
+                        </HBox>
+                    </HBox>
+                </VBox>
+                <VBox alignment="CENTER_RIGHT" spacing="2">
+                    <Label text="TJM" styleClass="caption" />
+                    <Label fx:id="lblHeaderTJM" text="0 EUR/jour" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: -fx-color-success;" />
+                </VBox>
+            </HBox>
+            
+            <!-- Form Section -->
+            <VBox spacing="20">
+                <Label text="Informations Personnelles" styleClass="heading" />
+                
+                <HBox spacing="20">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Nom" styleClass="form-label" />
+                        <TextField fx:id="nomField" promptText="Votre nom" />
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                        <Label text="Prenom" styleClass="form-label" />
+                        <TextField fx:id="prenomField" promptText="Votre prenom" />
+                    </VBox>
+                </HBox>
+                
+                <VBox spacing="8">
+                    <Label text="Adresse Email" styleClass="form-label" />
+                    <HBox styleClass="text-field" style="-fx-padding: 0;">
+                        <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                            <FontIcon iconLiteral="fth-mail" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </HBox>
+                        <TextField fx:id="emailField" promptText="email@exemple.com"
+                                   style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                   HBox.hgrow="ALWAYS" />
+                    </HBox>
+                </VBox>
+                
+                <VBox spacing="8">
+                    <Label text="Nouveau mot de passe (laisser vide pour ne pas changer)" styleClass="form-label" />
+                    <HBox styleClass="text-field" style="-fx-padding: 0;">
+                        <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                            <FontIcon iconLiteral="fth-lock" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </HBox>
+                        <PasswordField fx:id="passwordField" promptText="Nouveau mot de passe"
+                                       style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                       HBox.hgrow="ALWAYS" />
+                    </HBox>
+                </VBox>
+            </VBox>
+            
+            <Separator />
+            
+            <!-- Professional Info -->
+            <VBox spacing="20">
+                <Label text="Informations Professionnelles" styleClass="heading" />
+                
+                <VBox spacing="8" maxWidth="300">
+                    <Label text="Tarif Journalier Moyen (TJM) en EUR" styleClass="form-label" />
+                    <HBox styleClass="text-field" style="-fx-padding: 0;">
+                        <HBox alignment="CENTER" style="-fx-padding: 0 12 0 16;">
+                            <FontIcon iconLiteral="fth-dollar-sign" iconSize="18" style="-fx-icon-color: -fx-color-muted-foreground;" />
+                        </HBox>
+                        <TextField fx:id="tarifField" promptText="Ex: 450"
+                                   style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 12;"
+                                   HBox.hgrow="ALWAYS" />
+                    </HBox>
+                </VBox>
+                
+                <VBox spacing="8">
+                    <Label text="Mes Competences" styleClass="form-label" />
+                    <VBox style="-fx-background-color: -fx-color-background-secondary; -fx-background-radius: 12; -fx-padding: 12;">
+                        <FlowPane fx:id="competencesBox" hgap="8" vgap="8" prefHeight="80" />
+                    </VBox>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <TextField fx:id="newCompetenceField" promptText="Ajouter une competence..." HBox.hgrow="ALWAYS" />
+                        <Button text="Ajouter" onAction="#addCompetence" styleClass="button, secondary">
+                            <graphic>
+                                <FontIcon iconLiteral="fth-plus" iconSize="14" />
+                            </graphic>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </VBox>
+            
+            <!-- Feedback Label -->
+            <Label fx:id="feedbackLabel" visible="false" managed="false" />
+            
+            <!-- Actions -->
+            <HBox alignment="CENTER_RIGHT" spacing="12">
+                <Button text="Enregistrer" styleClass="button, primary" onAction="#saveProfile">
+                    <graphic>
+                        <FontIcon iconLiteral="fth-save" iconSize="16" style="-fx-icon-color: white;" />
+                    </graphic>
+                </Button>
             </HBox>
         </VBox>
-
-        <Label fx:id="feedbackLabel" visible="false" managed="false" />
         
-        <HBox alignment="CENTER_RIGHT">
-            <Button text="Enregistrer" styleClass="button, primary" onAction="#saveProfile" />
-        </HBox>
-    </VBox>
-    
-    <!-- Evaluations Section -->
-    <Label text="Évaluations reçues" styleClass="title" style="-fx-font-size: 22px;" />
-    
-    <HBox spacing="20">
-        <VBox styleClass="modern-card-small" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
-            <Label text="Note Moyenne" style="-fx-text-fill: -fx-color-muted-foreground;" />
-            <Label fx:id="lblMoyenne" text="— / 5" style="-fx-font-size: 28px; -fx-font-weight: 900; -fx-text-fill: -fx-color-primary;" />
+        <!-- Evaluations Section -->
+        <VBox spacing="16">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <FontIcon iconLiteral="fth-star" iconSize="24" style="-fx-icon-color: #F59E0B;" />
+                <Label text="Evaluations Recues" styleClass="title-md" />
+            </HBox>
+            
+            <HBox spacing="16">
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="8">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <StackPane style="-fx-background-color: #FEF3C7; -fx-background-radius: 10;"
+                                   prefWidth="40" prefHeight="40" alignment="CENTER">
+                            <FontIcon iconLiteral="fth-star" iconSize="18" style="-fx-icon-color: #F59E0B;" />
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Note Moyenne" styleClass="caption" />
+                            <Label fx:id="lblMoyenne" text="-- / 5" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: -fx-color-primary;" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+                
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="8">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <StackPane style="-fx-background-color: #DBEAFE; -fx-background-radius: 10;"
+                                   prefWidth="40" prefHeight="40" alignment="CENTER">
+                            <FontIcon iconLiteral="fth-message-square" iconSize="18" style="-fx-icon-color: #3B82F6;" />
+                        </StackPane>
+                        <VBox spacing="2">
+                            <Label text="Nombre d'avis" styleClass="caption" />
+                            <Label fx:id="lblNbAvis" text="0" style="-fx-font-size: 24px; -fx-font-weight: 700;" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </HBox>
+            
+            <VBox fx:id="evaluationsBox" spacing="12">
+                <!-- Evaluations rendered dynamically -->
+            </VBox>
         </VBox>
-        <VBox styleClass="modern-card-small" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" spacing="5">
-            <Label text="Nombre d'avis" style="-fx-text-fill: -fx-color-muted-foreground;" />
-            <Label fx:id="lblNbAvis" text="0" style="-fx-font-size: 28px; -fx-font-weight: 900; -fx-text-fill: -fx-color-foreground;" />
-        </VBox>
-    </HBox>
-    
-    <VBox fx:id="evaluationsBox" spacing="10">
-        <!-- Evaluations rendered dynamically -->
     </VBox>
-</VBox>
 </ScrollPane>
